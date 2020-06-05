@@ -14,6 +14,19 @@ export default class LED {
   }
 
   /**
+   * If no state is passed, the led is toggled, if
+   * a zero is passed, the led is toggled off. If a
+   * one is passed, it is toggled on.
+   * @param {number} state
+   */
+  toggle(state = 2) {
+    if (state === 2) state = +!this.isOn();
+
+    this.led.writeSync(state);
+    return this;
+  }
+
+  /**
    * Turns the led on.
    * @returns {object}
    */
