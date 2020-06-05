@@ -1,5 +1,4 @@
-// import Gpio from '@/lib/objects/gpio';
-var Gpio = require('onoff').Gpio;
+const Gpio = require('onoff').Gpio;
 
 export default class LED {
 

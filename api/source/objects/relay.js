@@ -1,4 +1,4 @@
-import Gpio from '@/lib/objects/gpio';
+const Gpio = require('onoff').Gpio;
 
 export default class Relay {
 

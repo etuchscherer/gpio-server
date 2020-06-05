@@ -1,4 +1,4 @@
-import { debug } from '@/lib/services/gpio';
+import { debug } from '@/services/gpio';
 
 /**
  * Reads the state of the specified pin
@@ -25,7 +25,7 @@ const read = function(req, res) {
 const set = function(req, res) {
   const { params, app } = req;
   const led = app.gpioService.findOrCreate(params.pin);
-  led.toggle(params.state);
+  led.toggle(+params.state);
   debug();
   res.send({ isOn: led.isOn() });
 };
