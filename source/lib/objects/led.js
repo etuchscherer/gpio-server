@@ -9,7 +9,8 @@ export default class LED {
    */
   constructor(pin) {
     this.pin = pin;
-    this.state = 'out';
+    this.direction = 'out';
+    this.state = 0;
     this.led = new Gpio(pin, this.state);
   }
 
@@ -20,9 +21,9 @@ export default class LED {
    * @param {number} state
    */
   toggle(state = 2) {
-    if (state === 2) state = +!this.isOn();
+    if (state === 2) this.state = +!this.isOn();
 
-    this.led.writeSync(state);
+    this.led.writeSync(this.state);
     return this;
   }
 
@@ -31,7 +32,8 @@ export default class LED {
    * @returns {object}
    */
   on() {
-    this.led.writeSync(1);
+    this.state = 1;
+    this.led.writeSync(this.state);
     return this;
   }
 
@@ -40,7 +42,8 @@ export default class LED {
    * @returns {object}
    */
   off() {
-    this.led.writeSync(0);
+    this.state = 0;
+    this.led.writeSync(this.state);
     return this;
   }
 

@@ -1,4 +1,3 @@
-import LED from '@/lib/objects/led';
 import { debug } from '@/lib/services/gpio';
 
 /**
