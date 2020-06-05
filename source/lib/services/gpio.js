@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import LED from '@/lib/objects/led';
 
 const _cache = new Map();
@@ -9,14 +8,11 @@ const _cache = new Map();
  * @param {number} pin
  */
 const findOrCreate = function (pin) {
-  let led = _.find(_cache, { pin });
-
-  if (!led) {
-    led = new LED(pin);
-    set(pin, led);
+  if (!_cache.has(pin)) {
+    _cache.set(pin, new LED(pin));
   }
 
-  return led;
+  return _cache.get(pin);
 };
 
 /**
