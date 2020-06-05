@@ -1,4 +1,4 @@
-import LED from '@/lib/objects/led';
+import LED from '@/objects/led';
 
 const _cache = new Map();
 

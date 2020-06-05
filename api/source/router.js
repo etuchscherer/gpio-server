@@ -1,6 +1,6 @@
 import express from 'express';
-import healthcheck from '@/lib/routes/healthcheck';
-import { read, set, destroy } from '@/lib/controllers/led-controller';
+import healthcheck from '@/routes/healthcheck';
+import { read, set, destroy } from '@/controllers/led-controller';
 
 const router = express.Router();
 

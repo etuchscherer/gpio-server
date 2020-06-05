@@ -1,4 +1,4 @@
-import { debug } from '@/lib/services/gpio';
+import { debug } from '@/services/gpio';
 
 /**
  * Reads the state of the specified pin
