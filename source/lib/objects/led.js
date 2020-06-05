@@ -11,7 +11,7 @@ export default class LED {
     this.pin = pin;
     this.direction = 'out';
     this.state = 0;
-    this.led = new Gpio(pin, this.state);
+    this.led = new Gpio(pin, this.direction);
   }
 
   /**
@@ -21,7 +21,8 @@ export default class LED {
    * @param {number} state
    */
   toggle(state = 2) {
-    if (state === 2) this.state = +!this.isOn();
+    this.state = state;
+    if (this.state === 2) this.state = +!this.isOn();
 
     this.led.writeSync(this.state);
     return this;
