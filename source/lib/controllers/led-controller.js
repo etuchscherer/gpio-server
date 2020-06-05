@@ -35,15 +35,10 @@ const set = function(req, res) {
  * @param {object} res
  */
 const destroy = function(req, res) {
-  const { params, app } = req;
+  const { params } = req;
   let success = false;
 
-  if (!hasPin(params.pin, app)) {
-    return res.send(404);
-  }
-
-  const state = getPin(params.pin, app);
-  app.gpioService.destroy();
+  app.gpioService.destroy(params.pin);
   success = true;
 
   res.send({ success });
