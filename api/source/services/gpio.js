@@ -1,54 +1,54 @@
-import LED from '@/objects/led';
+import Pin from '@/objects/pin';
 
 const _cache = new Map();
 
 /**
- * Finds an led in the cache, or creates a new one for the specified pin.
+ * Finds a pin in the cache, or creates a new one for the specified id.
  * Pushes to the cache upon creation.
- * @param {number} pin
+ * @param {number} id
  */
-const findOrCreate = function (pin) {
-  if (!_cache.has(pin)) {
-    _cache.set(pin, new LED(pin));
+const findOrCreate = function (id) {
+  if (!_cache.has(+id)) {
+    _cache.set(+id, new Pin(+id));
   }
 
-  return _cache.get(pin);
+  return _cache.get(+id);
 };
 
 /**
  * Pushes the supplied pin into the cache.
- * @param {number} key
+ * @param {number} id
  * @param {object} value
  */
-const set = function(key, value) {
-  return _cache.set(key, value);
+const set = function(id, value) {
+  return _cache.set(+id, value);
 };
 
 /**
- * Returns true if he supplied pin exists in the cache. Otherwise false.
- * @param {number} pin
+ * Returns true if the supplied pin exists in the cache. Otherwise false.
+ * @param {number} id
  */
-const has = function(pin) {
-  return _cache.has(pin);
+const has = function(id) {
+  return _cache.has(+id);
 };
 
 /**
- * Plucks the object from the cache
- * @param {number} pin
+ * Returns the object from the cache
+ * @param {number} id
  * @returns {object}
  */
-const get = function(pin) {
-  return _cache.get(pin);
+const get = function(id) {
+  return _cache.get(+id);
 };
 
 /**
  * Deletes the pin from the cache
- * @param {number} pin
+ * @param {number} id
  */
-const destroy = function(pin) {
-  if (_cache.has(pin)) {
-    _cache.get(pin).destroy();
-    _cache.delete(pin);
+const destroy = function(id) {
+  if (_cache.has(+id)) {
+    _cache.get(+id).destroy();
+    _cache.delete(+id);
   }
 };
 
