@@ -35,7 +35,7 @@ const set = function(req, res) {
  * @param {object} res
  */
 const destroy = function(req, res) {
-  const { params } = req;
+  const { params, app } = req;
   let success = false;
 
   app.gpioService.destroy(params.pin);
