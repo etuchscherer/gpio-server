@@ -43,7 +43,7 @@ const destroy = function(req, res) {
   }
 
   const state = getPin(params.pin, app);
-  state.destroy();
+  app.gpioService.destroy();
   success = true;
 
   res.send({ success });

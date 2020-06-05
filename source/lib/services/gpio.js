@@ -46,6 +46,17 @@ const get = function(pin) {
 };
 
 /**
+ * Deletes the pin from the cache
+ * @param {number} pin
+ */
+const destroy = function(pin) {
+  if (_cache.has(pin)) {
+    _cache.get(pin).destroy();
+    _cache.delete(pin);
+  }
+};
+
+/**
  * Prints out the contents of the gpio state/_cache.
  * @param {object} req
  * @param {object} res
@@ -62,5 +73,6 @@ export default {
   set,
   get,
   has,
-  debug
+  debug,
+  destroy
 };
