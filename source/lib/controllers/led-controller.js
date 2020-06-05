@@ -35,7 +35,7 @@ const set = function(req, res) {
  * @param {object} res
  */
 const destroy = function(req, res) {
-  const { pin } = req.params || 0;
+  const { params, app } = req;
   let success = false;
 
   if (!hasPin(params.pin, app)) {
@@ -45,12 +45,6 @@ const destroy = function(req, res) {
   const state = getPin(params.pin, app);
   state.destroy();
   success = true;
-
-  if (pin) {
-    const led = new LED(pin);
-    success = true;
-    led.destroy();
-  }
 
   res.send({ success });
 };

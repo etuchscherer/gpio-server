@@ -9,7 +9,7 @@ const _cache = new Map();
  * @param {number} pin
  */
 const findOrCreate = function (pin) {
-  let led = _.find(gpio._cache, { pin });
+  let led = _.find(_cache, { pin });
 
   if (!led) {
     led = new LED(pin);
