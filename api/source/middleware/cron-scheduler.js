@@ -1,7 +1,7 @@
 import Pin from '@/objects/pin';
 import cron from 'node-cron';
 
-export default cronScheduler = function(req, res, next) {
+const cronScheduler = function(req, res, next) {
 
   console.log('initializing main feed pump…');
   // TODO:: do not hardcode
@@ -23,3 +23,5 @@ export default cronScheduler = function(req, res, next) {
 
   return next();
 };
+
+export default cronScheduler;

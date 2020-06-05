@@ -76,7 +76,7 @@ export default class Pin {
    * @param {number} newState
    */
   _setState(newState) {
-    if (!isValidState(newState)) {
+    if (!this._isValidState(newState)) {
       throw new Error('Tried to set an invalid pinstate, expected a 1 or a 0');
     }
     this.state = newState;
@@ -89,6 +89,6 @@ export default class Pin {
    * @param {number} state
    */
   _isValidState(state) {
-    return validPinstates.incudes(state);
+    return validPinstates.includes(state);
   }
 }
