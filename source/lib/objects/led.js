@@ -21,11 +21,12 @@ export default class LED {
    * @param {number} state
    */
   toggle(state = 2) {
+    console.log('toggling to :: ', state);
     this.state = state;
     if (this.state === 2) this.state = +!this.isOn();
 
-    this.led.writeSync(this.state);
-    return this;
+    if (this.state === 1) return this.on();
+    if (this.state === 0) return this.off();
   }
 
   /**
