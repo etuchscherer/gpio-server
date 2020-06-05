@@ -60,11 +60,9 @@ const destroy = function(pin) {
  * Prints out the contents of the gpio state/_cache.
  * @param {object} req
  * @param {object} res
- * @param {object} next
  */
-export const debug = function(req, res, next) {
+export const debug = function(req, res) {
   console.log('debugging cache :: ', _cache);
-  return next();
 };
 
 export default {
