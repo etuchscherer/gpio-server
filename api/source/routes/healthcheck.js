@@ -1,3 +1,3 @@
 export default (req, res) => {
-  res.send({ success: true });
+  res.json({ success: true });
 };
