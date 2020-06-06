@@ -35,9 +35,8 @@ export default new Vuex.Store({
       fetch("http://localhost:3000/healthcheck")
         .then(r => r.json())
         .then(data => {
-          console.log(data);
-          // TODO:: use data.isOn
-          commit("setPump", data.success);
+          // console.log(data);
+          commit("setPump", data.isOn);
         });
     }
   },
