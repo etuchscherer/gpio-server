@@ -7,14 +7,10 @@ import { debug } from '@/services/gpio';
  */
 const read = function(req, res) {
   const { params, app } = req;
+  const isEnergized = app.gpioService.findOrCreate(+params.id).isEnergized();
 
-  if (!_hasPin(params.id, app)) {
-    return res.send(404);
-  }
-
-  const state = _getPin(params.id, app);
   debug();
-  res.json({ isOn: state.isOn() });
+  res.json({ isEnergized });
 };
 
 /**
@@ -24,10 +20,10 @@ const read = function(req, res) {
  */
 const set = function(req, res) {
   const { params, app } = req;
-  const led = app.gpioService.findOrCreate(params.id);
-  led.toggle(+params.state);
+  const pin = app.gpioService.findOrCreate(+params.id);
+  const isEnrgized = pin.toggle(+params.state).isEnergized();
   debug();
-  res.json({ isOn: led.isOn() });
+  res.json({ isEnergized });
 };
 
 /**

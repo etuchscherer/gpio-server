@@ -24,7 +24,9 @@ export default class Pin {
    * @returns {object}
    */
   toggle(state = 2) {
-    if (state === 2) state = +!this.isOn();
+    if (state === 2) {
+      state = +!this.isEnergized();
+    }
 
     this._setState(state);
     return this;
@@ -49,18 +51,10 @@ export default class Pin {
   }
 
   /**
-   * Returns true if pinstate is 0 ( or off ). Otherwise false.
-   * @returns {boolean}
-   */
-  isOff() {
-    return this.pin.readSync() === 0;
-  }
-
-  /**
    * Returns true if pinstate is 1 ( or on ). Otherwise false.
    * @returns {boolean}
    */
-  isOn() {
+  isEnergized() {
     return this.pin.readSync() === 1;
   }
 
