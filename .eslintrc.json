@@ -14,7 +14,10 @@
     "quotes": [2, "single"],
     "indent": [2, 2],
     "no-unused-vars": [2],
-    "filenames/match-regex": [2, "^[a-z-]+$"]
+    "filenames/match-regex": [2, "^[a-z-]+$"],
+    "prefer-const": [2, {
+      "destructuring": "all"
+    }]
   },
   "settings": {
     "import/resolver": {
