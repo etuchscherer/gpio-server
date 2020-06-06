@@ -58,7 +58,7 @@ const destroy = function(id) {
  */
 export const debug = function() {
   const timestamp = moment().format();
-  console.log(timestamp, 'debugging cache :: ', _cache);
+  console.log(timestamp, '\t debugging cache \t', _cache);
 };
 
 export default {
