@@ -21,7 +21,7 @@ const read = function(req, res) {
 const set = function(req, res) {
   const { params, app } = req;
   const pin = app.gpioService.findOrCreate(+params.id);
-  const isEnrgized = pin.toggle(+params.state).isEnergized();
+  const isEnergized = pin.toggle(+params.state).isEnergized();
   debug();
   res.json({ isEnergized });
 };
