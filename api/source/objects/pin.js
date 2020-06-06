@@ -71,7 +71,7 @@ export default class Pin {
       throw new Error('Tried to set an invalid pinstate, expected a 1 or a 0');
     }
     this.state = newState;
-    rpio.open(this.id, this.direction, this.state);
+    rpio.write(this.id, this.direction, this.state);
     return this;
   }
 
