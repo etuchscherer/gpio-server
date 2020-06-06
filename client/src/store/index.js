@@ -32,7 +32,7 @@ export default new Vuex.Store({
   },
   actions: {
     togglePump({ commit }) {
-      fetch("http://localhost:3000/healthcheck")
+      fetch("http://localhost:3000/led/18/2", { method: "POST" })
         .then(r => r.json())
         .then(data => {
           // console.log(data);
