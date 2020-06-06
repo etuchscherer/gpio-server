@@ -17,7 +17,8 @@
     "filenames/match-regex": [2, "^[a-z-]+$"],
     "prefer-const": [2, {
       "destructuring": "all"
-    }]
+    }],
+    "space-before-function-paren": [2, "never"]
   },
   "settings": {
     "import/resolver": {

@@ -7,7 +7,7 @@ const _cache = new Map();
  * Pushes to the cache upon creation.
  * @param {number} id
  */
-const findOrCreate = function (id) {
+const findOrCreate = function(id) {
   if (!_cache.has(+id)) {
     _cache.set(+id, new Pin(+id));
   }
