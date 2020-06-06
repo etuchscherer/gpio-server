@@ -11,7 +11,7 @@ export default class Pin {
    */
   constructor(id, direction = 'out') {
     this.id = +id;
-    this.direction = this.direction;
+    this.direction = direction;
     this.state = 0;
     this.pin = new Gpio(this.id, this.direction);
   }

@@ -1,11 +1,11 @@
-const enable = function(req, res) {
+const enable = function(req) {
   const { app } = req;
 
   const feedPump = app.gpioService.get(18);
   feedPump.pump.on();
 };
 
-const disable = function(req, res) {
+const disable = function(req) {
   const { app } = req;
 
   const feedPump = app.gpioService.get(18);
