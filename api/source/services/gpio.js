@@ -1,4 +1,5 @@
 import Pin from '@/objects/pin';
+import moment from 'moment';
 
 const _cache = new Map();
 
@@ -56,7 +57,8 @@ const destroy = function(id) {
  * Prints out the contents of the gpio state/_cache.
  */
 export const debug = function() {
-  console.log('debugging cache :: ', _cache);
+  const timestamp = moment().format();
+  console.log(timestamp, 'debugging cache :: ', _cache);
 };
 
 export default {
