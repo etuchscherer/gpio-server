@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "moment": "^2.26.0",
     "node-cron": "^2.0.3",
-    "onoff": "^6.0.0"
+    "rpio": "^2.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",

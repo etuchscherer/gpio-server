@@ -1,6 +1,6 @@
 import validPinstates from '@/utils/valid-pinstates';
 
-const Gpio = require('onoff').Gpio;
+var rpio = require('rpio');
 
 export default class Pin {
 
@@ -13,7 +13,6 @@ export default class Pin {
     this.id = +id;
     this.direction = direction;
     this.state = 0;
-    this.pin = new Gpio(this.id, this.direction);
   }
 
   /**
@@ -24,7 +23,7 @@ export default class Pin {
    * @returns {object}
    */
   toggle(state = 2) {
-    if (state === 2) state = +!this.isOn();
+    if (state === 2) state = +!this.isEnergized();
 
     this._setState(state);
     return this;
@@ -49,26 +48,18 @@ export default class Pin {
   }
 
   /**
-   * Returns true if pinstate is 0 ( or off ). Otherwise false.
-   * @returns {boolean}
-   */
-  isOff() {
-    return this.pin.readSync() === 0;
-  }
-
-  /**
    * Returns true if pinstate is 1 ( or on ). Otherwise false.
    * @returns {boolean}
    */
-  isOn() {
-    return this.pin.readSync() === 1;
+  isEnergized() {
+    return !!rpio.read(this.id);
   }
 
   /**
    * Unexport GPIO and free resources
    */
   destroy() {
-    this.pin.unexport();
+    rpio.close(this.id, rpio.PIN_RESET);
   }
 
   /**
@@ -80,7 +71,7 @@ export default class Pin {
       throw new Error('Tried to set an invalid pinstate, expected a 1 or a 0');
     }
     this.state = newState;
-    this.pin.writeSync(this.state);
+    rpio.open(this.id, this.direction, this.state);
     return this;
   }
 
