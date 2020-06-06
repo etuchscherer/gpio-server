@@ -9,7 +9,7 @@ export default class Pin {
    * @param {number} id
    * @param {string} direction
    */
-  constructor(id, direction = 'out') {
+  constructor(id, direction = rpio.OUTPUT) {
     this.id = +id;
     this.direction = direction;
     this.state = 0;

@@ -14,7 +14,7 @@ const read = function(req, res) {
 
   const state = _getPin(params.id, app);
   debug();
-  res.json({ isOn: state.isOn() });
+  res.json({ isEnergized: state.isEnergized() });
 };
 
 /**
@@ -27,7 +27,7 @@ const set = function(req, res) {
   const led = app.gpioService.findOrCreate(params.id);
   led.toggle(+params.state);
   debug();
-  res.json({ isOn: led.isOn() });
+  res.json({ isEnergized: led.isEnergized() });
 };
 
 /**
