@@ -58,7 +58,7 @@ const dumpAll = function() {
   const entries = _cache;
   const json = Object.fromEntries(entries);
 
-  return { pins: _sanatizePayload(json) };
+  return json;
 };
 
 /**
@@ -71,26 +71,6 @@ const destroy = function(id) {
     _cache.get(+id).destroy();
     _cache.delete(+id);
   }
-};
-
-/**
- * Sanatizes the payload, for client consumption.
- * @param {object} json
- * @returns {array}
- */
-const _sanatizePayload = function(json) {
-  Object.keys(json).map((el) => {
-    const pin = json[el];
-    const id = el;
-
-    pin.isEnergized = pin.state === 1;
-    // pin.pin = id;
-
-    // delete pin.pin;
-    // delete pin.state;
-
-    return { id, pin };
-  });
 };
 
 export default {
