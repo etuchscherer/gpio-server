@@ -13,7 +13,7 @@ app.gpioService = gpioService;
 console.log('done!');
 
 app.use(logger);
-// app.use(cronScheduler);
+app.use(cronScheduler);
 app.use(cors());
 app.use(router);
 
