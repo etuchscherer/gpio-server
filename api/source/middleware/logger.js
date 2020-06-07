@@ -1,6 +1,4 @@
-import logger from '@/services/logging';
-
 export default function(req, res, next) {
-  req.logger = logger;
+  req.logger = req.app.logger;
   return next();
 }

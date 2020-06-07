@@ -1,19 +1,36 @@
 import express from 'express';
 import router from '@/router';
 import gpioService from '@/services/gpio';
-import cronScheduler from '@/middleware/cron-scheduler';
+import initHardware from '@/tasks/init-hardware';
+import cronScheduler from '@/tasks/cron-scheduler';
 import cors from 'cors';
-import logger from '@/middleware/logger';
+import { createLogger, format, transports } from 'winston';
+
+const { combine, timestamp, label, prettyPrint, colorize } = format;
+
+const logger = createLogger({
+  format: combine(label({ label: 'Cache' }), timestamp(), prettyPrint()),
+  transports: [
+    new transports.Console({
+      format: combine(colorize()),
+    }),
+  ],
+});
 
 const app = express();
 const port = 3000;
 
+console.log('initializing logger…');
+app.logger = logger;
+console.log('done.');
+
 console.log('initializing gpio service…');
 app.gpioService = gpioService;
-cronScheduler(app);
-console.log('done!');
+initHardware(app);
+console.log('done.');
 
-app.use(logger);
+cronScheduler(app);
+
 app.use(cors());
 app.use(router);
 
