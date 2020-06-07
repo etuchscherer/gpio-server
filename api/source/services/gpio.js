@@ -1,5 +1,5 @@
 import { debug } from '@/services/logging';
-import Pin from '@/objects/pin';
+import Relay from '@/objects/relay';
 
 const _cache = new Map();
 const label = 'cache';
@@ -7,13 +7,14 @@ const label = 'cache';
 /**
  * Finds a pin in the cache, or creates a new one for the specified id.
  * Pushes to the cache upon creation.
- * @param {number} id
+ * @param {number} id The pin that drives the relay
+ * @param {string} name human readable name of the relay's function
  */
-const findOrCreate = function(id) {
+const findOrCreate = function(id, name) {
   debug(`looking up pin ${id}`, label);
   if (!_cache.has(+id)) {
     debug('miss', label);
-    _cache.set(+id, new Pin(+id));
+    _cache.set(+id, new Relay(name, +id));
   } else {
     debug('hit', label);
   }
