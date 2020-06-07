@@ -1,7 +1,7 @@
 import express from 'express';
 import router from '@/router';
 import gpioService from '@/services/gpio';
-// import cronScheduler from '@/middleware/cron-scheduler';
+import cronScheduler from '@/middleware/cron-scheduler';
 import cors from 'cors';
 import logger from '@/middleware/logger';
 
