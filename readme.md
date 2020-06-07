@@ -5,8 +5,7 @@ A simple express server to interact with GPIO.
 ## Prerequisites
 
 * node.js > 12
-* epoll
-* Linux, with GPIO
+* [1 wire interface enabled](https://www.raspberrypi-spy.co.uk/2018/02/enable-1-wire-interface-raspberry-pi/)
 
 ## Installation
 
