@@ -10,10 +10,10 @@ const port = 3000;
 
 console.log('initializing gpio service…');
 app.gpioService = gpioService;
+cronScheduler(app);
 console.log('done!');
 
 app.use(logger);
-app.use(cronScheduler);
 app.use(cors());
 app.use(router);
 
