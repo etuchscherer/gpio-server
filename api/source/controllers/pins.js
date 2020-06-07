@@ -22,6 +22,13 @@ const set = function(req, res) {
   res.json({ isEnergized });
 };
 
+const status = function(req, res) {
+  const { app } = req;
+  const cache = app.gpioService.dumpApp;
+
+  res.json({ cache });
+};
+
 /**
  * Destroys a pin and frees up resources.
  * @param {object} req
@@ -36,4 +43,4 @@ const destroy = function(req, res) {
   res.json({ success });
 };
 
-export { destroy, read, set };
+export { destroy, read, set, status };

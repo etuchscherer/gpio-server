@@ -1,52 +1,19 @@
-const Gpio = require('onoff').Gpio;
+import Pin from '@/objects/pin';
 
-export default class Relay {
+export default class Relay extends Pin {
 
-  constructor(name, pin) {
+  constructor(name, id, direction = 'out') {
+    super(id, direction);
+
     this.name = name;
-    this.pin = pin;
-    this.state = 'out';
-    this.relay = new Gpio(pin, state);
+    this.typeOf = 'relay';
   }
 
-  /**
-   * Turns the relay on.
-   * @returns {object}
-   */
-  on() {
-    this.relay.writeSync(1);
-    return this;
+  energize() {
+    return this._setState(1);
   }
 
-  /**
-   * Turns the relay off.
-   * @returns {object}
-   */
-  off() {
-    this.relay.writeSync(0);
-    return this;
-  }
-
-  /**
-   * Returns true if pinstate is 0 ( or off ). Otherwise false.
-   * @returns {boolean}
-   */
-  isOff() {
-    return this.relay.readSync() === 0;
-  }
-
-  /**
-   * Returns true if pinstate is 1 ( or on ). Otherwise false.
-   * @returns {boolean}
-   */
-  isOn() {
-    return this.relay.readSync() === 1;
-  }
-
-  /**
-   * Unexport GPIO and free resources
-   */
-  destroy() {
-    this.relay.unexport();
+  deEnergize() {
+    return this._setState(0);
   }
 }
