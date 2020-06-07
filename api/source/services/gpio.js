@@ -84,10 +84,10 @@ const _sanatizePayload = function(json) {
     const id = el;
 
     pin.isEnergized = pin.state === 1;
-    pin.pin = id;
+    // pin.pin = id;
 
-    delete pin.pins;
-    delete pin.state;
+    // delete pin.pin;
+    // delete pin.state;
 
     return { id, pin };
   });
