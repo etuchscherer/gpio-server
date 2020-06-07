@@ -1,6 +1,6 @@
 import validPinstates from '@/utils/valid-pinstates';
 
-// const Gpio = require('onoff').Gpio;
+const shouldUseGpio = process.env.OS_ENV === 'pi';
 
 export default class Pin {
 
@@ -13,7 +13,11 @@ export default class Pin {
     this.id = +id;
     this.direction = direction;
     this.state = 0;
-    // this.pin = new Gpio(this.id, this.direction);
+
+    if (shouldUseGpio) {
+      const Gpio = require('onoff').Gpio;
+      this.pin = new Gpio(this.id, this.direction);
+    }
   }
 
   /**

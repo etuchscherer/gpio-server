@@ -7,8 +7,8 @@
     "build:api": "babel api/source -d dist/api",
     "lint:api": "eslint api",
     "lint:fix": "eslint --fix api",
-    "start:production": "node ./dist/api/app.js",
-    "start": "nodemon --legacy-watch --exec babel-node ./api/source/app.js",
+    "start:pi": "OS_ENV=pi nodemon --exec babel-node ./api/source/app.js",
+    "start": "nodemon --exec babel-node ./api/source/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "eric@tuchscherer.me",
