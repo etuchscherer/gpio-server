@@ -24,7 +24,7 @@ const set = function(req, res) {
 
 const status = function(req, res) {
   const { app } = req;
-  const cache = app.gpioService.dumpApp;
+  const cache = app.gpioService.dumpAll();
 
   res.json({ cache });
 };

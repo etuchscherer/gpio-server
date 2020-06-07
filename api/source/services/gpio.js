@@ -51,6 +51,15 @@ const get = function(id) {
   return _cache.get(+id);
 };
 
+const dumpAll = function() {
+  const dump = {};
+  _cache.forEach((value, key) => {
+    dump[key] = value;
+  });
+
+  return dump;
+};
+
 /**
  * Deletes the pin from the cache
  * @param {number} id
@@ -69,5 +78,6 @@ export default {
   set,
   get,
   has,
+  dumpAll,
   destroy
 };
