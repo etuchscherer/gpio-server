@@ -5,29 +5,22 @@
     </div>
 
     <div class="flex items-stretch bg-gray-200 h-24 m-4">
-      <div
-        v-on:click="togglePump"
-        v-bind:class="{ active: isEnergized }"
-        class="flex-1 text-3xl leading-loose text-gray-700 text-center bg-gray-400 px-4 py-2 m-2"
-      >
-        Pump On
-      </div>
-      <div
-        class="flex-1 text-3xl leading-loose text-gray-700 text-center bg-gray-400 px-4 py-2 m-2"
-      >
-        Light Disabled
-      </div>
-      <div
-        class="flex-1 text-3xl leading-loose text-gray-700 text-center bg-gray-400 px-4 py-2 m-2"
-      >
-        Fan Disabled
-      </div>
+      <ManualSwitch equipment="pump" />
+      <ManualSwitch equipment="light" />
+      <ManualSwitch equipment="fan" />
     </div>
   </div>
 </template>
 
 <script>
+import ManualSwitch from "@/components/ManualSwitch";
+
 export default {
+  data() {
+    return {
+      foo: "bar"
+    };
+  },
   computed: {
     isEnergized() {
       return this.$store.getters.pump.isEnergized;
@@ -38,13 +31,9 @@ export default {
       const { isEnergized } = this.$store.getters.pump;
       this.$store.dispatch("togglePump", !isEnergized);
     }
+  },
+  components: {
+    ManualSwitch
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.active {
-  background-color: green;
-  color: white;
-}
-</style>
