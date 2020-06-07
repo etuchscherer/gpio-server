@@ -27,7 +27,7 @@ export default class Pin {
     let newState = state;
 
     if (state === 2) {
-      newState = !this.state;
+      newState = +(!this.state);
     }
 
     this._setState(newState);
