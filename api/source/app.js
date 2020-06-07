@@ -17,4 +17,4 @@ app.use(cronScheduler);
 app.use(cors());
 app.use(router);
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Gpio server application listening on http://localhost:${port}`));
