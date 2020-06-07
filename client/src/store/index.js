@@ -35,8 +35,7 @@ export default new Vuex.Store({
       fetch("http://localhost:3000/pins/18/2", { method: "POST" })
         .then(r => r.json())
         .then(data => {
-          // console.log(data);
-          commit("setPump", data.isOn);
+          commit("setPump", data.isEnergized);
         });
     }
   },
