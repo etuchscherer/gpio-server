@@ -1,7 +1,8 @@
+import { debug } from '@/services/logging';
 import Pin from '@/objects/pin';
-import moment from 'moment';
 
 const _cache = new Map();
+const label = 'cache';
 
 /**
  * Finds a pin in the cache, or creates a new one for the specified id.
@@ -9,8 +10,12 @@ const _cache = new Map();
  * @param {number} id
  */
 const findOrCreate = function(id) {
+  debug(`lookin up pin ${17}`, label);
   if (!_cache.has(+id)) {
+    debug('miss', label);
     _cache.set(+id, new Pin(+id));
+  } else {
+    debug('hit', label);
   }
 
   return _cache.get(+id);
@@ -22,6 +27,7 @@ const findOrCreate = function(id) {
  * @param {object} value
  */
 const set = function(id, value) {
+  debug(`setting ${typeof value} as pin ${id}`, label);
   return _cache.set(+id, value);
 };
 
@@ -30,7 +36,9 @@ const set = function(id, value) {
  * @param {number} id
  */
 const has = function(id) {
-  return _cache.has(+id);
+  const hasHit = _cache.has(+id);
+  debug(`testing for pin ${id}, ${ hasHit ? 'hit' : 'miss' }`, 'cache');
+  return hasHit;
 };
 
 /**
@@ -47,18 +55,11 @@ const get = function(id) {
  * @param {number} id
  */
 const destroy = function(id) {
+  debug(`flushing pin ${id}`);
   if (_cache.has(+id)) {
     _cache.get(+id).destroy();
     _cache.delete(+id);
   }
-};
-
-/**
- * Prints out the contents of the gpio state/_cache.
- */
-export const debug = function() {
-  const timestamp = moment().format();
-  console.log(timestamp, '\t debugging cache \t', _cache);
 };
 
 export default {
@@ -67,6 +68,5 @@ export default {
   set,
   get,
   has,
-  debug,
   destroy
 };
