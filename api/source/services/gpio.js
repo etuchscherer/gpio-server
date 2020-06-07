@@ -51,13 +51,14 @@ const get = function(id) {
   return _cache.get(+id);
 };
 
+/**
+ * Dumps all cache data out
+ */
 const dumpAll = function() {
-  const dump = {};
-  _cache.forEach((value, key) => {
-    dump[key] = value;
-  });
+  const entries = _cache;
+  const json = Object.fromEntries(entries);
 
-  return dump;
+  return json;
 };
 
 /**
