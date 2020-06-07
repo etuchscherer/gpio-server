@@ -18,6 +18,21 @@ git clone https://github.com/etuchscherer/gpio-server.git
 npm i
 ```
 
+## Running
+
+To run on non-pi environments. Note, the `onoff` lib will not loaded, and the default mode will not work on a Raspberry PI.
+
+```
+npm start
+```
+
+To enable the gpio, for control of the board, pass `OS_ENV=pi` on startup. Or use the following command.
+
+```
+npm run start:pi
+```
+
+
 ## Testing
 
 Uhh. This has been a major PITA. Due to using `onoff` for pin interaction, I cannot create meaningful
