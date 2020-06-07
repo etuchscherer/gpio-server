@@ -10,7 +10,7 @@ const label = 'cache';
  * @param {number} id
  */
 const findOrCreate = function(id) {
-  debug(`lookin up pin ${17}`, label);
+  debug(`looking up pin ${id}`, label);
   if (!_cache.has(+id)) {
     debug('miss', label);
     _cache.set(+id, new Pin(+id));
