@@ -17,6 +17,7 @@ const logger = createLogger({
  * @param {*} label
  */
 const debug = function(message, label) {
+  const level = 'debug';
   if (!label) label = 'debug';
 
   return logger.log({ level, message, label });
