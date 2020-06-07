@@ -24,11 +24,13 @@ export default class Pin {
    * @returns {object}
    */
   toggle(state = 2) {
+    let newState = state;
+
     if (state === 2) {
-      state = +!this.isEnergized();
+      newState = !this.state;
     }
 
-    this._setState(state);
+    this._setState(newState);
     return this;
   }
 
