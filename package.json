@@ -7,7 +7,7 @@
     "build:api": "babel api/source -d dist/api",
     "lint:api": "eslint api",
     "lint:fix": "eslint --fix api",
-    "start:production": "node ./dist/bin/www.js",
+    "start:production": "node ./dist/api/app.js",
     "start": "nodemon --legacy-watch --exec babel-node ./api/source/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "moment": "^2.26.0",
     "node-cron": "^2.0.3",
     "onoff": "^6.0.0",
     "winston": "^3.2.1"
