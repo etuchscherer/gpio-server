@@ -5,6 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    temps: {
+      degreesCelsius: .0,
+      degreesFahrenheit: .0,
+      lastUpdated: undefined
+    },
     equipment: {
       pump: {
         isEnergized: false,
@@ -21,6 +26,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    temps(state) {
+      return state.temps;
+    },
     findEquipment(state) {
       return name => {
         return state.equipment[name];
@@ -42,6 +50,11 @@ export default new Vuex.Store({
     },
     setLight(state, isEnergized) {
       state.equipment.light.isEnergized = isEnergized;
+    },
+    setTemps(state, degreesCelsius, degreesFahrenheit, lastUpdated) {
+      state.temps.degreesCelsius = degreesCelsius;
+      state.temps.degreesFahrenheit = degreesFahrenheit;
+      state.temps.lastUpdated = lastUpdated;
     }
   },
   actions: {
@@ -64,6 +77,14 @@ export default new Vuex.Store({
         .then(r => r.json())
         .then(data => {
           commit("setLight", data.isEnergized);
+        });
+    },
+    fetchTemps({commit}) {
+      fetch("http://localhost:3000/temps")
+        .then(r => r.json())
+        .then(data => {
+          const { degreesCelsius, degreesFahrenheit, lastUpdated } = data;
+          commit("setTemps", degreesCelsius, degreesFahrenheit, lastUpdated);
         });
     }
   },

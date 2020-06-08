@@ -5,35 +5,31 @@
     </div>
 
     <div class="flex items-stretch bg-gray-200 h-24 m-4">
-      <ManualSwitch equipment="pump" />
-      <ManualSwitch equipment="light" />
-      <ManualSwitch equipment="fan" />
+      <div class="flex-1 text-3xl leading-loose text-gray-700 text-center bg-blue-100 px-4 py-2 m-2">
+        <p>
+          {{ temps.degreesFahrenheit }}°F
+          <span class="text-xl">{{ temps.degreesCelsius }}°C</span>
+        </p>
+      </div>
+
+      <router-link class="flex-1 text-3xl leading-loose text-gray-700 text-center bg-gray-400 px-4 py-2 m-2" to="/controls">
+        Overrides
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import ManualSwitch from "@/components/ManualSwitch";
-
 export default {
-  data() {
-    return {
-      foo: "bar"
-    };
-  },
   computed: {
-    isEnergized() {
-      return this.$store.getters.pump.isEnergized;
+    temps() {
+      return this.$store.getters.temps;
     }
   },
-  methods: {
-    togglePump() {
-      const { isEnergized } = this.$store.getters.pump;
-      this.$store.dispatch("togglePump", !isEnergized);
-    }
-  },
-  components: {
-    ManualSwitch
+  mounted() {
+    setInterval(() => {
+      this.$store.dispatch('fetchTemps')
+    }, 2000);
   }
-};
+}
 </script>
