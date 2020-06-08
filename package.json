@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "ds18b20-raspi": "^0.3.4",
     "express": "^4.17.1",
     "moment": "^2.26.0",
     "node-cron": "^2.0.3",
