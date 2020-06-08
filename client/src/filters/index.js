@@ -8,4 +8,4 @@ const toDegreesFahrenheit = function(value) {
   return (value * 9/5) + 32
 };
 
-export { capitalize };
+export { capitalize, toDegreesFahrenheit };
