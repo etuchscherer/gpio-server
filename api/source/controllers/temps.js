@@ -1,13 +1,12 @@
 import moment from 'moment';
 
-import { getTempC, getTempF } from '@/tasks/temp-sensor';
+import { getTempC } from '@/tasks/temp-sensor';
 
 const read = function(req, res) {
   const timestamp = moment().format();
   const degreesCelsius = getTempC();
-  const degreesFahrenheit = getTempF();
 
-  res.json({ degreesCelsius, degreesFahrenheit, timestamp });
+  res.json({ degreesCelsius, timestamp });
 };
 
 export { read };

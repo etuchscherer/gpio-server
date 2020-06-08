@@ -6,8 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     temps: {
-      degreesCelsius: .0,
-      degreesFahrenheit: .0,
+      degreesCelsius: 100,
       lastUpdated: undefined
     },
     equipment: {
@@ -51,9 +50,8 @@ export default new Vuex.Store({
     setLight(state, isEnergized) {
       state.equipment.light.isEnergized = isEnergized;
     },
-    setTemps(state, degreesCelsius, degreesFahrenheit, lastUpdated) {
+    setTemps(state, degreesCelsius, lastUpdated) {
       state.temps.degreesCelsius = degreesCelsius;
-      state.temps.degreesFahrenheit = degreesFahrenheit;
       state.temps.lastUpdated = lastUpdated;
     }
   },
@@ -83,8 +81,8 @@ export default new Vuex.Store({
       fetch("http://localhost:3000/temps")
         .then(r => r.json())
         .then(data => {
-          const { degreesCelsius, degreesFahrenheit, lastUpdated } = data;
-          commit("setTemps", degreesCelsius, degreesFahrenheit, lastUpdated);
+          const { degreesCelsius, lastUpdated } = data;
+          commit("setTemps", degreesCelsius, lastUpdated);
         });
     }
   },
