@@ -1,6 +1,9 @@
 import { debug } from '@/services/logging';
 import cron from 'node-cron';
 
+const PUMP = 18;
+const LIGHT = 17;
+
 const label = 'scheduled-task';
 
 const cronScheduler = function(app) {
@@ -30,7 +33,7 @@ const cronScheduler = function(app) {
   // run at 8 PM every day
   cron.schedule('0 20 * * *', () => {
     debug('turning off main overhead lights', label);
-    gpioService.findOrCreate(LIGHT).on();
+    gpioService.findOrCreate(LIGHT).off();
   });
 };
 
