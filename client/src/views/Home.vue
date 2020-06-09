@@ -34,7 +34,7 @@ export default {
   mounted() {
     setInterval(() => {
       this.$store.dispatch('fetchTemps')
-    }, 2000);
+    }, 30000);
   }
 }
 </script>

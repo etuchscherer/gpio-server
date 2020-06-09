@@ -5,7 +5,8 @@ const capitalize = function(value) {
 };
 
 const toDegreesFahrenheit = function(value) {
-  return (value * 9/5) + 32
+  const degrees = (value * 9) / 5 + 32;
+  return degrees.toFixed(1);
 };
 
 export { capitalize, toDegreesFahrenheit };
