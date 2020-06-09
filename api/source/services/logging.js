@@ -3,6 +3,7 @@ import { createLogger, format, transports } from 'winston';
 const { combine, timestamp, label, prettyPrint, colorize } = format;
 
 const logger = createLogger({
+  level: 'debug',
   format: combine(label({ label: 'Cache' }), timestamp(), prettyPrint()),
   transports: [
     new transports.Console({
