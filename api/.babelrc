@@ -9,7 +9,7 @@
       {
         "cwd": "packagejson",
         "alias": {
-          "@": "./api/source"
+          "@": "./source"
         }
       }
     ]
