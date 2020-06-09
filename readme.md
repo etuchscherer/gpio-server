@@ -44,7 +44,7 @@ npm i
 
 ## Running
 
-There are 2 components, the API and the client. You can either run each independantly with live reload.
+There are 2 components, the API and the client. You can run each independantly with live reload.
 
 ### Running independantly
 
@@ -53,6 +53,7 @@ There are 2 components, the API and the client. You can either run each independ
 Running the API on a non-pi environment, use `npm start`. This defaults to nodemon, and live reload. __Note, the `onoff` lib will not loaded, the server will run, but there will be no GPIO control.__
 
 ```
+cd ~/Sites/gpio-server/api
 npm start
 ```
 
@@ -60,6 +61,23 @@ __To enable the gpio__, you have to pass `OS_ENV=pi` on startup. Use the followi
 
 ```
 npm run start:pi
+```
+
+#### The Client
+
+To run the client with nodemon ::
+
+```
+cd ~/Sites/gpio-server/client
+npm run serve
+```
+
+To build to dist, and run via a lightweight http-server. (Assumes you have `http-server` installed globally. `npm i -g http-server`);
+
+```
+cd ~/Sites/gpio-server/client
+npm run build
+cd dist && http-server
 ```
 
 
