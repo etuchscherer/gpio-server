@@ -4,8 +4,8 @@ const LIGHT = 17;
 const init = function(app) {
   const { gpioService } = app;
   // TODO:: do not hardcode
-  gpioService.findOrCreate(PUMP);
-  gpioService.findOrCreate(LIGHT);
+  gpioService.findOrCreateRelay(PUMP);
+  gpioService.findOrCreateRelay(LIGHT);
 };
 
 export default init;

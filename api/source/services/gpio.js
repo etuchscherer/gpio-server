@@ -1,5 +1,6 @@
 import { debug } from '@/services/logging';
 import Relay from '@/objects/relay';
+import TempSensor from '@/objects/temp-sensor';
 
 const _cache = new Map();
 const label = 'cache';
@@ -10,7 +11,7 @@ const label = 'cache';
  * @param {number} id The pin that drives the relay
  * @param {string} name human readable name of the relay's function
  */
-const findOrCreate = function(id, name) {
+const findOrCreateRelay = function(id, name) {
   debug(`looking up pin ${id}`, label);
   if (!_cache.has(+id)) {
     debug('miss', label);
@@ -20,6 +21,21 @@ const findOrCreate = function(id, name) {
   }
 
   return _cache.get(+id);
+};
+
+/**
+ * Returns a temp sensor object ( effectivly a singleton ).
+ */
+const findOrCreateTempSensor = function() {
+  debug('looking up temp sensor on pin 4', label);
+  if (!_cache.has(4)) {
+    debug('miss', label);
+    _cache.set(4, new TempSensor());
+  } else {
+    debug('hit', label);
+  }
+
+  return _cache.get(4);
 };
 
 /**
@@ -75,7 +91,8 @@ const destroy = function(id) {
 
 export default {
   _cache,
-  findOrCreate,
+  findOrCreateRelay,
+  findOrCreateTempSensor,
   set,
   get,
   has,

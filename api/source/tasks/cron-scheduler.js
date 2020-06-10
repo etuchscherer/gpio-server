@@ -15,25 +15,31 @@ const cronScheduler = function(app) {
   // Run every hour at 0 minutes
   cron.schedule('0 * * * *', () => {
     debug('turning main feed pump on', label);
-    gpioService.findOrCreate(PUMP).on();
+    gpioService.findOrCreateRelay(PUMP).on();
   });
 
   // run on minute ten of every hour
   cron.schedule('10 * * * *', () => {
     debug('turning main feed pump off', label);
-    gpioService.findOrCreate(PUMP).off();
+    gpioService.findOrCreateRelay(PUMP).off();
   });
 
   // run at 6 AM every day
   cron.schedule('0 6 * * *', () => {
     debug('turning on main overhead lights', label);
-    gpioService.findOrCreate(LIGHT).on();
+    gpioService.findOrCreateRelay(LIGHT).on();
   });
 
   // run at 8 PM every day
   cron.schedule('0 20 * * *', () => {
     debug('turning off main overhead lights', label);
-    gpioService.findOrCreate(LIGHT).off();
+    gpioService.findOrCreateRelay(LIGHT).off();
+  });
+
+  // run every 2 minutes
+  cron.schedule('*/2 * * * *', () => {
+    debug('reading temp from bay', label);
+    gpioService.findOrCreateTempSensor().read();;
   });
 };
 

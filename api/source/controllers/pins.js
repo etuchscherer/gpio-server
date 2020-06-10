@@ -5,7 +5,7 @@
  */
 const read = function(req, res) {
   const { params, app } = req;
-  const isEnergized = app.gpioService.findOrCreate(+params.id).isEnergized();
+  const isEnergized = app.gpioService.findOrCreateRelay(+params.id).isEnergized();
 
   res.json({ isEnergized });
 };
@@ -17,7 +17,7 @@ const read = function(req, res) {
  */
 const set = function(req, res) {
   const { params, app } = req;
-  const pin = app.gpioService.findOrCreate(+params.id);
+  const pin = app.gpioService.findOrCreateRelay(+params.id);
   const isEnergized = pin.toggle(+params.state).isEnergized();
   res.json({ isEnergized });
 };

@@ -1,12 +1,15 @@
 import moment from 'moment';
 
-import { getTempC } from '@/tasks/temp-sensor';
-
 const read = function(req, res) {
-  const timestamp = moment().format();
-  const degreesCelsius = getTempC();
+  const { gpioService } = req.app;
+  const { tempC, tempF, lastUpdated } = gpioService.findOrCreateTempSensor();
 
-  res.json({ degreesCelsius, timestamp });
+  res.json({
+    tempC,
+    tempF,
+    lastReading: lastUpdated,
+    lastUpdated: moment().format()
+  });
 };
 
 export { read };
