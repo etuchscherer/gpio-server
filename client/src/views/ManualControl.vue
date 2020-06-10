@@ -28,7 +28,7 @@ export default {
     },
     pollForStatus() {
       this.pollingId = setInterval(() => {
-        this.$store.dispatch('syncStatus');
+        this.$store.dispatch("syncStatus");
       }, 25000);
     }
   },
@@ -36,7 +36,7 @@ export default {
     ManualSwitch
   },
   created() {
-    this.$store.dispatch('syncStatus');
+    this.$store.dispatch("syncStatus");
 
     this.pollForStatus();
   },

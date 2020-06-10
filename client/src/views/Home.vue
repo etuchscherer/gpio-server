@@ -6,7 +6,7 @@
 
     <div class="flex-1 text-xl">
       internal temp
-      <span class=text-6xl>
+      <span class="text-6xl">
         {{ temps.degreesCelsius | toDegreesFahrenheit }}°F
       </span>
       {{ temps.degreesCelsius }}°C

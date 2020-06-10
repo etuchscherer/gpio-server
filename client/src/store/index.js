@@ -56,7 +56,7 @@ export default new Vuex.Store({
     setTemps(state, payload) {
       state.temps.degreesCelsius = payload.tempC;
       state.temps.lastUpdated = payload.lastUpdated;
-    },
+    }
   },
   actions: {
     toggle_pump({ commit }) {
@@ -91,14 +91,13 @@ export default new Vuex.Store({
       fetch("http://localhost:3000/sync")
         .then(r => r.json())
         .then(equipment => {
-          console.log('Dump status', equipment);
+          console.log("Dump status", equipment);
           const { light, fan, pump } = equipment;
           // debugger;
           commit("setLight", light);
           commit("setFan", fan);
           commit("setPump", pump);
-
-        })
+        });
     }
   },
   modules: {}
