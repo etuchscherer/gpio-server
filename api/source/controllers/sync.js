@@ -6,22 +6,25 @@
  */
 const sync = function(req, res) {
 
-  const pump = {
-    isEnergized: true,
-    isEnabled: true
+  const { gpioService } = req.app;
+  const pump = gpioService.findOrCreateRelay(18);
+  const light = gpioService.findOrCreateRelay(17);
+
+  const equipment = {
+    pump: {
+      isEnergized: pump.isEnergized(),
+      isEnabled: true
+    },
+    fan: {
+      isEnergized: false,
+      isEnabled: false
+    },
+    light: {
+      isEnergized: light.isEnergized(),
+      isEnabled: true
+    }
   };
 
-  const fan = {
-    isEnergized: false,
-    isEnabled: false
-  };
-
-  const light = {
-    isEnergized: false,
-    isEnabled: true
-  };
-
-  const equipment = { pump, fan, light };
   res.json(equipment);
 };
 
