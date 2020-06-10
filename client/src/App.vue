@@ -1,10 +1,21 @@
 <template>
   <div id="app">
-    <div class="container mx-auto">
+    <div class="container mx-auto flex-grow">
       <router-view />
     </div>
+    <Footer></Footer>
   </div>
 </template>
+
+<script>
+import Footer from "@/components/Footer";
+
+export default {
+  components: {
+    Footer
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -13,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 #nav {
@@ -25,6 +39,10 @@
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+
+  .container {
+    flex: 1;
   }
 }
 </style>
