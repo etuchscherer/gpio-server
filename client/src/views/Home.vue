@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex flex-col bg-gray-200 m-4">
-      <h1 class="px-4">This is the root</h1>
+      <h1 class="px-4">This is the main dashboard</h1>
     </div>
 
     <div class="flex-1 text-xl">
@@ -40,10 +40,19 @@ export default {
   filters: {
     toDegreesFahrenheit
   },
-  mounted() {
-    setInterval(() => {
-      this.$store.dispatch("fetchTemps");
-    }, 30000);
+  methods: {
+    pollTemp() {
+      this.pollingInterval = setInterval(() => {
+        this.$store.dispatch("fetchTemps");
+      }, 3000);
+    }
+  },
+  created() {
+    this.$store.dispatch("fetchTemps");
+    this.pollTemp();
+  },
+  beforeDestroy() {
+    clearInterval(this.pollingInterval);
   }
 };
 </script>
