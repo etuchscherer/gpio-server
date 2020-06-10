@@ -77,7 +77,7 @@ export default new Vuex.Store({
           commit("setLight", data.isEnergized);
         });
     },
-    fetchTemps({commit}) {
+    fetchTemps({ commit }) {
       fetch("http://localhost:3000/temps")
         .then(r => r.json())
         .then(data => {
