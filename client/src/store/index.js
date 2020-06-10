@@ -63,21 +63,21 @@ export default new Vuex.Store({
       fetch("http://localhost:3000/toggle/pump", { method: "POST" })
         .then(r => r.json())
         .then(data => {
-          commit("setPump", data.isEnergized);
+          commit("setPump", data);
         });
     },
     toggle_fan({ commit }) {
       fetch("http://localhost:3000/toggle/fan", { method: "POST" })
         .then(r => r.json())
         .then(data => {
-          commit("setFan", data.isEnergized);
+          commit("setFan", data);
         });
     },
     toggle_light({ commit }) {
       fetch("http://localhost:3000/toggle/light", { method: "POST" })
         .then(r => r.json())
         .then(data => {
-          commit("setLight", data.isEnergized);
+          commit("setLight", data);
         });
     },
     fetchTemps({ commit }) {

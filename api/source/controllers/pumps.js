@@ -7,9 +7,10 @@ const toggle = function(req, res) {
   const name = 'main feed pump';
   const pump = app.gpioService.findOrCreateRelay(MAIN_FEED_PUMP_PIN, name);
   const isEnergized = pump.toggle().isEnergized();
+  const isEnabled = true;
   const timestamp = ts();
 
-  res.json({ isEnergized, timestamp, name });
+  res.json({ isEnergized, isEnabled, timestamp, name });
 };
 
 export { toggle };

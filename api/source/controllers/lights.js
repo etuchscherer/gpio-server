@@ -7,9 +7,10 @@ const toggle = function(req, res) {
   const name = 'main overhead light';
   const light = app.gpioService.findOrCreateRelay(LIGHT_PIN, name);
   const isEnergized = light.toggle().isEnergized();
+  const isEnabled = true;
   const timestamp = ts();
 
-  res.json({ isEnergized, timestamp, name });
+  res.json({ isEnergized, isEnabled, timestamp, name });
 };
 
 export {toggle};
