@@ -25,10 +25,23 @@ export default {
     togglePump() {
       const { isEnergized } = this.$store.getters.pump;
       this.$store.dispatch("togglePump", !isEnergized);
+    },
+    pollForStatus() {
+      this.pollingId = setInterval(() => {
+        this.$store.dispatch('syncStatus');
+      }, 25000);
     }
   },
   components: {
     ManualSwitch
+  },
+  created() {
+    this.$store.dispatch('syncStatus');
+
+    this.pollForStatus();
+  },
+  beforeDestroy() {
+    clearInterval(this.pollingId);
   }
 };
 </script>

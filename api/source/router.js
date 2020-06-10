@@ -4,6 +4,7 @@ import { read, set, destroy, status } from '@/controllers/pins';
 import { toggle as togglePump } from '@/controllers/pumps';
 import { toggle as toggleLight } from '@/controllers/lights';
 import { read as readTemps } from '@/controllers/temps';
+import { sync } from '@/controllers/sync';
 
 const router = express.Router();
 
@@ -12,7 +13,9 @@ router.get('/healthcheck', healthcheck);
 
 // experimental routes
 
-// functional routes
+// app routes
+router.get('/sync', sync);
+
 router.get('/pins', status);
 router.get('/pins/:id', read);
 router.post('/pins/:id/:state', set);
