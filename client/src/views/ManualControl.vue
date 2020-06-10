@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex flex-col bg-gray-200 m-4">
-      <h1 class="px-4">This is the root</h1>
+      <h1 class="px-4">These are manual overrides</h1>
     </div>
 
     <div class="flex items-stretch bg-gray-200 h-24 m-4">
