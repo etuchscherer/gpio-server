@@ -44,7 +44,7 @@ export default {
     pollTemp() {
       this.pollingInterval = setInterval(() => {
         this.$store.dispatch("fetchTemps");
-      }, 3000);
+      }, 30000);
     }
   },
   created() {

@@ -53,9 +53,9 @@ export default new Vuex.Store({
       state.equipment.light.isEnergized = light.isEnergized;
       state.equipment.light.isEnabled = light.isEnabled;
     },
-    setTemps(state, degreesCelsius, lastUpdated) {
-      state.temps.degreesCelsius = degreesCelsius;
-      state.temps.lastUpdated = lastUpdated;
+    setTemps(state, payload) {
+      state.temps.degreesCelsius = payload.tempC;
+      state.temps.lastUpdated = payload.lastUpdated;
     },
   },
   actions: {
@@ -84,8 +84,7 @@ export default new Vuex.Store({
       fetch("http://localhost:3000/temps")
         .then(r => r.json())
         .then(data => {
-          const { degreesCelsius, lastUpdated } = data;
-          commit("setTemps", degreesCelsius, lastUpdated);
+          commit("setTemps", data);
         });
     },
     syncStatus({ commit }) {
