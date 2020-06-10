@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
-import Controls from "@/views/ManualControl";
+import Controls from "@/views/ManualControl.vue";
+import Logs from "@/views/Logs.vue";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
     path: "/controls",
     name: "Controls",
     component: Controls
+  },
+  {
+    path: "/logs",
+    name: "Logs",
+    component: Logs
   }
 ];
 
