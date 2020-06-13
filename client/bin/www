@@ -2,4 +2,4 @@
 
 . /home/pi/.config/nvm/nvm.sh
 
-cd /home/pi/Sites/gpio-server/client/dist && http-server
+cd /home/pi/Sites/gpio-server/client/dist && npm run serve
