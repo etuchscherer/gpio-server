@@ -5,6 +5,7 @@ import { toggle as togglePump } from '@/controllers/pumps';
 import { toggle as toggleLight } from '@/controllers/lights';
 import { read as readTemps } from '@/controllers/temps';
 import { sync } from '@/controllers/sync';
+import { toggle as toggleFan } from '@/controllers/fan';
 
 const router = express.Router();
 
@@ -23,6 +24,7 @@ router.delete('/pins/:id', destroy);
 
 router.post('/toggle/pump', togglePump);
 router.post('/toggle/light', toggleLight);
+router.post('/toggle/fan', toggleFan);
 
 router.get('/temps', readTemps);
 
