@@ -39,7 +39,7 @@ const cronScheduler = function(app) {
   // run every 2 minutes
   cron.schedule('*/2 * * * *', () => {
     debug('reading temp from bay', label);
-    gpioService.findOrCreateTempSensor().read();;
+    gpioService.findOrCreateTempSensor().read();
   });
 };
 
