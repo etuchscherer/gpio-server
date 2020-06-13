@@ -7,7 +7,7 @@
     "build": "babel source -d dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "start:production": "node dist/app.js",
+    "start:production": "OS_ENV=pi node dist/app.js",
     "start:pi": "OS_ENV=pi nodemon --exec babel-node ./source/app.js",
     "start": "nodemon --exec babel-node ./source/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"

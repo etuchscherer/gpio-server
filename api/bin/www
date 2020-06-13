@@ -1,0 +1,5 @@
+#!/bin/bash
+
+. /home/pi/.config/nvm/nvm.sh
+
+npm run start:production

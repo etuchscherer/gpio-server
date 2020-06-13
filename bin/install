@@ -1,0 +1,13 @@
+#!/bin/bash
+
+GPIO=~/Sites/gpio-server
+
+echo 'building the dist for the api, sit tight…'
+# build the dist for the api
+cd $GPIO/api && npm run build
+echo 'done'
+
+echo 'putting the front end together…'
+# build the dist for the client
+cd $GPIO/client && npm run build
+echo 'all done, enjoy…'

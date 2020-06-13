@@ -1,0 +1,15 @@
+[Unit]
+Description=My service
+After=network.target
+
+[Service]
+ExecStart=/home/pi/Sites/gpio-service/api/bin/www
+Type=simple
+WorkingDirectory=/home/pi/Sites/gpio-service
+StandardOutput=inherit
+StandardError=inherit
+Restart=on-failure
+User=pi
+
+[Install]
+WantedBy=multi-user.target
