@@ -5,8 +5,8 @@ const FAN = 27;
 const init = function(app) {
   const { gpioService } = app;
   // TODO:: do not hardcode
-  gpioService.findOrCreateRelay(PUMP, 'pump');
-  gpioService.findOrCreateRelay(LIGHT, 'light');
+  gpioService.findOrCreateRelay(PUMP, 'pump').deEnergize();
+  gpioService.findOrCreatePin(LIGHT, 'light').off();
   gpioService.findOrCreateRelay(FAN, 'fan');
 };
 
