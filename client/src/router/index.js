@@ -1,26 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "@/views/Home.vue";
-import Controls from "@/views/ManualControl.vue";
-import Logs from "@/views/Logs.vue";
+import Main from "@/views/Main.vue";
+import Maintenance from "@/views/Maintenance.vue";
+import Reports from "@/views/Reports.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Main",
+    component: Main
   },
   {
-    path: "/controls",
-    name: "Controls",
-    component: Controls
+    path: "/maintenance",
+    name: "Maintenance",
+    component: Maintenance
   },
   {
-    path: "/logs",
-    name: "Logs",
-    component: Logs
+    path: "/reports",
+    name: "Reports",
+    component: Reports
   }
 ];
 

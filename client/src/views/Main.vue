@@ -17,13 +17,16 @@
     </div>
 
     <div class="flex-1">
-      Pump is OFF
+      <span v-if="isPumpEnergized">Pump is On</span>
+      <span v-else>Pump is OFF</span>
     </div>
     <div class="flex-1">
-      Lights are ON
+      <span v-if="isLightEnergized">Light is On</span>
+      <span v-else>Light is OFF</span>
     </div>
     <div class="flex-1">
-      Fans are DISABLED
+      <span v-if="isFanEnergized">Fan is On</span>
+      <span v-else>Fan is OFF</span>
     </div>
   </div>
 </template>
@@ -35,6 +38,15 @@ export default {
   computed: {
     temps() {
       return this.$store.getters.temps;
+    },
+    isPumpEnergized() {
+      return this.$store.getters.pump.isEnergized;
+    },
+    isLightEnergized() {
+      return this.$store.getters.pump.isEnergized;
+    },
+    isFanEnergized() {
+      return this.$store.getters.pump.isEnergized;
     }
   },
   filters: {

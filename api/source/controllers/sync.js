@@ -17,7 +17,7 @@ const sync = function(req, res) {
     },
     fan: {
       isEnergized: false,
-      isEnabled: false
+      isEnabled: true
     },
     light: {
       isEnergized: light.isEnergized(),

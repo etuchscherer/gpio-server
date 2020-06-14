@@ -20,7 +20,7 @@ export default new Vuex.Store({
       },
       fan: {
         isEnergized: false,
-        isEnabled: false
+        isEnabled: true
       }
     }
   },
