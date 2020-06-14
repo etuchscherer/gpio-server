@@ -21,10 +21,6 @@ export default class Relay extends Pin {
     return this._setState(1);
   }
 
-  /**
-   * 5V Relay's close thier switch when
-   * low is applied. Hi holds the relay open.
-   */
   isEnergized() {
     return !super.isEnergized();
   }
