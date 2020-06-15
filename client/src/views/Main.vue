@@ -40,13 +40,13 @@ export default {
       return this.$store.getters.temps;
     },
     isPumpEnergized() {
-      return this.$store.getters.pump.isEnergized;
+      return this.$store.getters.findEquipment('pump').isEnergized;
     },
     isLightEnergized() {
-      return this.$store.getters.light.isEnergized;
+      return this.$store.getters.findEquipment('light').isEnergized;
     },
     isFanEnergized() {
-      return this.$store.getters.fan.isEnergized;
+      return this.$store.getters.findEquipment('fan').isEnergized;
     }
   },
   filters: {
