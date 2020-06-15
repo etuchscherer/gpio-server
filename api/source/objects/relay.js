@@ -7,6 +7,7 @@ export default class Relay extends Pin {
 
     this.name = name;
     this.typeOf = 'relay';
+    this._setState(1);
   }
 
   energize() {

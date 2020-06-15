@@ -1,6 +1,6 @@
 import validPinstates from '@/utils/valid-pinstates';
 
-const shouldUseGpio = process.env.OS_ENV === 'pi';
+const shouldUseGpio = ['pi', 'test'].includes(process.env.OS_ENV);
 
 export default class Pin {
 
