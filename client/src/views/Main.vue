@@ -43,10 +43,10 @@ export default {
       return this.$store.getters.pump.isEnergized;
     },
     isLightEnergized() {
-      return this.$store.getters.pump.isEnergized;
+      return this.$store.getters.light.isEnergized;
     },
     isFanEnergized() {
-      return this.$store.getters.pump.isEnergized;
+      return this.$store.getters.fan.isEnergized;
     }
   },
   filters: {
