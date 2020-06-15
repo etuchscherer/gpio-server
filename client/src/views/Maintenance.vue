@@ -18,12 +18,12 @@ import ManualSwitch from "@/components/ManualSwitch";
 export default {
   computed: {
     isEnergized() {
-      return this.$store.getters.pump.isEnergized;
+      return this.$store.getters.findEquipment('pump').isEnergized;
     }
   },
   methods: {
     togglePump() {
-      const { isEnergized } = this.$store.getters.pump;
+      const { isEnergized } = this.$store.getters.findEquipment('pump');
       this.$store.dispatch("togglePump", !isEnergized);
     },
     pollForStatus() {

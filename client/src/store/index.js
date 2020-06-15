@@ -33,12 +33,6 @@ export default new Vuex.Store({
         return state.equipment[name];
       };
     },
-    pump(state) {
-      return state.equipment.pump;
-    },
-    fan(state) {
-      return state.equipment.fan;
-    }
   },
   mutations: {
     setPump(state, pump) {

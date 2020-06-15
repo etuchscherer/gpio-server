@@ -61,7 +61,12 @@ export default class Pin {
    * @returns {boolean}
    */
   isEnergized() {
-    return this.pin.readSync() === 1;
+    let state = this.state;
+
+    if (shouldUseGpio) {
+      state = this.pin.readSync();
+    }
+    return state === 1;
   }
 
   /**
