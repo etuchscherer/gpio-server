@@ -80,7 +80,11 @@ export default class Pin {
       throw new Error('Tried to set an invalid pinstate, expected a 1 or a 0');
     }
     this.state = newState;
-    this.pin.writeSync(this.state);
+
+    if (shouldUseGpio) {
+      this.pin.writeSync(this.state);
+    }
+
     return this;
   }
 
