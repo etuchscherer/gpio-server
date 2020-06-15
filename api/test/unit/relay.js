@@ -1,6 +1,6 @@
 import Relay from '@/objects/relay';
 
-const { assert } = require("chai");
+const { assert } = require('chai');
 
 let relay;
 
@@ -19,7 +19,7 @@ describe('relay tests', () => {
   });
 
   it('sets the id properly', () => {
-    assert.strictEqual(relay.id, 1)
+    assert.strictEqual(relay.id, 1);
   });
 
   it('instansiates pin to high', () => {
@@ -38,5 +38,5 @@ describe('relay tests', () => {
 
   it('isEnergized() returns false', () => {
     assert.strictEqual(relay.isEnergized(), false);
-  })
+  });
 });

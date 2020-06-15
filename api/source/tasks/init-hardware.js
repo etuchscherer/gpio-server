@@ -1,13 +1,14 @@
-const PUMP = 18;
-const LIGHT = 17;
-const FAN = 27;
+import config from '@/config';
+
+const { pump, exhaust, intake, light } = config.equipment;
 
 const init = function(app) {
   const { gpioService } = app;
-  // TODO:: do not hardcode
-  gpioService.findOrCreateRelay(PUMP, 'pump').deEnergize();
-  gpioService.findOrCreatePin(LIGHT, 'light').off();
-  gpioService.findOrCreateRelay(FAN, 'fan');
+
+  gpioService.findOrCreateRelay(pump.pin, 'pump');
+  gpioService.findOrCreatePin(light.pin, 'light');
+  gpioService.findOrCreateRelay(intake.pin, 'fan');
+  gpioService.findOrCreateRelay(exhaust.pin, 'fan');
 };
 
 export default init;

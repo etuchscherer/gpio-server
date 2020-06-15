@@ -12,5 +12,5 @@ describe('gpio tests', () => {
 
   it('creats a cache', () => {
     assert.strictEqual(gpio._cache.constructor.name, 'Map');
-  })
+  });
 });

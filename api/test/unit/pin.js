@@ -1,6 +1,6 @@
 import Pin from '@/objects/pin';
 
-const { assert } = require("chai");
+const { assert } = require('chai');
 
 let pin;
 

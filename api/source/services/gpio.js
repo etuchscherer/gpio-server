@@ -1,8 +1,10 @@
+import config from '@/config';
 import { debug } from '@/services/logging';
 import Relay from '@/objects/relay';
 import Pin from '@/objects/pin';
 import TempSensor from '@/objects/temp-sensor';
 
+const { temp } = config.equipment;
 const _cache = new Map();
 const label = 'cache';
 
@@ -28,9 +30,8 @@ const findOrCreateRelay = function(id, name) {
  * Finds a pin in the cache, or creates a new one for the specified id.
  * Pushes to the cache upon creation.
  * @param {number} id The pin that drives the relay
- * @param {string} name human readable name of the relay's function
  */
-const findOrCreatePin = function (id, name) {
+const findOrCreatePin = function(id) {
   debug(`looking up pin ${id}`, label);
   if (!_cache.has(+id)) {
     debug('miss', label);
@@ -47,7 +48,7 @@ const findOrCreatePin = function (id, name) {
  */
 const findOrCreateTempSensor = function() {
   debug('looking up temp sensor on pin 4', label);
-  if (!_cache.has(4)) {
+  if (!_cache.has(temp.pin)) {
     debug('miss', label);
     _cache.set(4, new TempSensor());
   } else {

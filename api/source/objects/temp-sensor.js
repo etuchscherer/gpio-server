@@ -1,12 +1,13 @@
 import { getTempC } from '@/tasks/temp-sensor';
+import { celsiusToFahrenheit } from '@/utils/celsius-to-fahrenheit';
 import moment from 'moment';
 
 export default class Temp {
 
-  constructor() {
+  constructor(id = 4) {
     this.name = 'temp sensor';
     this.typeOf = '1 wire interface';
-    this.id = 4; // Ok to hardcode. 1-wire interface only works on pin 4.
+    this.id = id;
   }
 
   /**
@@ -37,7 +38,7 @@ export default class Temp {
    */
   _setTemp() {
     this.tempC = getTempC();
-    this.tempF = (this.tempC * 9 / 5) + 32;
+    this.tempF = celsiusToFahrenheit(this.tempC);
     this.lastUpdated = moment().format();
   }
 }
