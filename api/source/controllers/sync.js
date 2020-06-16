@@ -1,3 +1,7 @@
+import config from '@/config';
+
+const { pump: p, light: l, exhaust: e } = config.equipment;
+
 /**
  * This route is intended to supply quick info to the
  * client, for syncing up state.
@@ -7,8 +11,9 @@
 const sync = function(req, res) {
 
   const { gpioService } = req.app;
-  const pump = gpioService.findOrCreateRelay(18);
-  const light = gpioService.findOrCreateRelay(17);
+  const pump = gpioService.findOrCreateRelay(p.pin);
+  const light = gpioService.findOrCreateRelay(l.pin);
+  const fan = gpioService.findOrCreateRelay(e.pin)
 
   const equipment = {
     pump: {
@@ -16,7 +21,7 @@ const sync = function(req, res) {
       isEnabled: true
     },
     fan: {
-      isEnergized: false,
+      isEnergized: fan.isEnergized(),
       isEnabled: true
     },
     light: {

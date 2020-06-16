@@ -2,8 +2,8 @@ const OFF = 0;
 const ON = 1;
 const PUMP = 18;
 const LIGHT = 17;
-const INTAKE = 22;
-const EXHAUST = 27;
+const INTAKE = 23;
+const EXHAUST = 22;
 const TEMP = 4;
 
 const config = {
