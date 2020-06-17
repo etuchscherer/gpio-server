@@ -2,6 +2,9 @@
 
 GPIO=~/Sites/gpio-server
 
+sudo systemctl stop api
+sudo systemctl stop client
+
 echo 'building the dist for the api, sit tight…'
 # build the dist for the api
 cd $GPIO/api && npm run build
@@ -11,3 +14,6 @@ echo 'putting the front end together…'
 # build the dist for the client
 cd $GPIO/client && npm run build
 echo 'all done, enjoy…'
+
+sudo systemctl start api
+sudo systemctl start client
