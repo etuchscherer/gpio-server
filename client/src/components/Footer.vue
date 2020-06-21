@@ -1,26 +1,32 @@
 <template>
-  <footer>
-    <div class="flex items-stretch bg-gray-200 h-18">
+  <footer id="footer">
+    <div class="flex h-full items-center">
       <router-link
-        class="flex-1 text-2xl text-gray-700 text-center bg-gray-400 h-32 p-8 m-2"
+        class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/reports"
       >
-        <p>Reports</p>
+        <span class="text-3xl font-semibold text-gray-100">Reports</span>
       </router-link>
 
       <router-link
-        class="flex-1 text-2xl text-gray-700 text-center bg-gray-400 h-32 p-8 m-2"
+        class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/"
       >
-        <p>Main</p>
+        <span class="text-3xl font-semibold text-gray-100">Main</span>
       </router-link>
 
       <router-link
-        class="flex-1 text-2xl text-gray-700 text-center bg-gray-400 h-32 p-8 m-2"
+        class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/maintenance"
       >
-        Maintenance
+        <span class="text-3xl font-semibold text-gray-100">Maintenance</span>
       </router-link>
     </div>
   </footer>
 </template>
+
+<style scoped>
+  #footer {
+    height: 10vh;
+  }
+</style>

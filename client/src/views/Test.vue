@@ -30,47 +30,14 @@
 <script>
 import Footer from '@/components/Footer';
 import MainPane from '@/components/MainPane';
-import { toDegreesFahrenheit } from "@/filters/index";
 
 export default {
   components: {
     Footer,
     MainPane
-  },
-  computed: {
-    temps() {
-      return this.$store.getters.temps;
-    },
-    isPumpEnergized() {
-      return this.$store.getters.findEquipment('pump').isEnergized;
-    },
-    isLightEnergized() {
-      return this.$store.getters.findEquipment('light').isEnergized;
-    },
-    isFanEnergized() {
-      return this.$store.getters.findEquipment('fan').isEnergized;
-    }
-  },
-  filters: {
-    toDegreesFahrenheit
-  },
-  methods: {
-    pollTemp() {
-      this.pollingInterval = setInterval(() => {
-        this.$store.dispatch("fetchTemps");
-      }, 30000);
-    }
-  },
-  created() {
-    this.$store.dispatch("fetchTemps");
-    this.pollTemp();
-  },
-  beforeDestroy() {
-    clearInterval(this.pollingInterval);
   }
-};
+}
 </script>
-
 
 <style scoped>
   .grid {

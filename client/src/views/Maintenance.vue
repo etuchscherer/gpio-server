@@ -9,11 +9,14 @@
       <ManualSwitch equipment="light" />
       <ManualSwitch equipment="fan" />
     </div>
+
+    <Footer class="fixed bottom-0 w-full card rounded-xl rounded-b-none" />
   </div>
 </template>
 
 <script>
 import ManualSwitch from "@/components/ManualSwitch";
+import Footer from "@/components/Footer";
 
 export default {
   computed: {
@@ -33,7 +36,8 @@ export default {
     }
   },
   components: {
-    ManualSwitch
+    ManualSwitch,
+    Footer
   },
   created() {
     this.$store.dispatch("syncStatus");

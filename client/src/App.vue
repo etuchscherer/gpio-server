@@ -3,16 +3,16 @@
     <div class="container mx-auto flex-grow">
       <router-view />
     </div>
-    <Footer></Footer>
+    <!-- <Footer></Footer> -->
   </div>
 </template>
 
 <script>
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 
 export default {
   components: {
-    Footer
+    // Footer
   }
 };
 </script>
@@ -45,4 +45,11 @@ export default {
     flex: 1;
   }
 }
+
+.card {
+  background-color: gray;
+  border-radius: 2rem;
+  height: 100%;
+}
+
 </style>
