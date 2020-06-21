@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import vueMoment from "vue-moment";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faSun,
@@ -15,6 +16,7 @@ import "./assets/tailwind.css";
 library.add(faSun, faSeedling, faWind, faWater);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.use(vueMoment);
 
 Vue.config.productionTip = false;
 

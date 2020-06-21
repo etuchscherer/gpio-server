@@ -5,8 +5,12 @@
     <div class="info-pane p-2 pb-1">
       <div class="card rounded-xl">
         <p class="temp text-6xl font-bold text-gray-100">83°</p>
-        <p class="date text-6xl font-bold text-gray-100">1/17/91</p>
-        <p class="time text-6xl font-bold text-gray-100">3:46 PM</p>
+        <p class="date text-6xl font-bold text-gray-100">
+          {{ time | moment("dddd, MMMM Do") }}
+        </p>
+        <p class="time text-6xl font-bold text-gray-100">
+          {{ time | moment("h:mm A") }}
+        </p>
       </div>
     </div>
 
@@ -46,12 +50,16 @@
 <script>
 import Footer from "@/components/Footer";
 import MainPane from "@/components/MainPane";
-import { toDegreesFahrenheit } from "@/filters/index";
 
 export default {
   components: {
     Footer,
     MainPane
+  },
+  data() {
+    return {
+      time: new Date()
+    };
   },
   computed: {
     temps() {
@@ -67,10 +75,12 @@ export default {
       return this.$store.getters.findEquipment("fan").isEnergized;
     }
   },
-  filters: {
-    toDegreesFahrenheit
-  },
   methods: {
+    updateTime() {
+      this.clockInterval = setInterval(() => {
+        this.time = new Date();
+      }, 1000);
+    },
     pollTemp() {
       this.pollingInterval = setInterval(() => {
         this.$store.dispatch("fetchTemps");
@@ -80,9 +90,11 @@ export default {
   created() {
     this.$store.dispatch("fetchTemps");
     this.pollTemp();
+    this.updateTime();
   },
   beforeDestroy() {
     clearInterval(this.pollingInterval);
+    clearInterval(this.clockInterval);
   }
 };
 </script>
