@@ -21,12 +21,12 @@ import Footer from "@/components/Footer";
 export default {
   computed: {
     isEnergized() {
-      return this.$store.getters.findEquipment('pump').isEnergized;
+      return this.$store.getters.findEquipment("pump").isEnergized;
     }
   },
   methods: {
     togglePump() {
-      const { isEnergized } = this.$store.getters.findEquipment('pump');
+      const { isEnergized } = this.$store.getters.findEquipment("pump");
       this.$store.dispatch("togglePump", !isEnergized);
     },
     pollForStatus() {

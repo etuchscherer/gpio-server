@@ -26,7 +26,7 @@
 </template>
 
 <style scoped>
-  #footer {
-    height: 10vh;
-  }
+#footer {
+  height: 10vh;
+}
 </style>

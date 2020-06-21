@@ -51,5 +51,4 @@ export default {
   border-radius: 2rem;
   height: 100%;
 }
-
 </style>
