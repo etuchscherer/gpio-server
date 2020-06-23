@@ -17,26 +17,7 @@
     <div class="video-pane p-2 pt-1">
       <div class="card rounded-xl flex justify-center">
         <div class="self-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="500"
-            height="250"
-            viewBox="0 0 500 250"
-          >
-            <rect fill="#ddd" width="500" height="250" />
-            <text
-              fill="rgba(0,0,0,0.5)"
-              font-family="sans-serif"
-              font-size="30"
-              dy="10.5"
-              font-weight="bold"
-              x="50%"
-              y="50%"
-              text-anchor="middle"
-            >
-              300×150
-            </text>
-          </svg>
+          <div class="video-placeholder" />
         </div>
       </div>
     </div>
@@ -129,5 +110,9 @@ export default {
   grid-column: 1 / 3;
   grid-row: 3 / 4;
   height: 10vmin;
+}
+
+.video-placeholder {
+  color: gainsboro;
 }
 </style>
