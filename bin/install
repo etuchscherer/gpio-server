@@ -7,12 +7,12 @@ sudo systemctl stop client
 
 echo 'building the dist for the api, sit tight…'
 # build the dist for the api
-cd $GPIO/api && npm run build
+cd $GPIO/api && npm i && npm run build
 echo 'done'
 
 echo 'putting the front end together…'
 # build the dist for the client
-cd $GPIO/client && npm run build
+cd $GPIO/client && npm i && npm run build
 echo 'all done, enjoy…'
 
 sudo systemctl start api
