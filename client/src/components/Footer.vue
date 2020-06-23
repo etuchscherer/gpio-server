@@ -2,6 +2,7 @@
   <footer id="footer">
     <div class="flex h-full items-center">
       <router-link
+        v-bind:class="{ 'active': isReports }"
         class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/reports"
       >
@@ -9,6 +10,7 @@
       </router-link>
 
       <router-link
+        v-bind:class="{ 'active': isMain }"
         class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/"
       >
@@ -16,6 +18,7 @@
       </router-link>
 
       <router-link
+        v-bind:class="{ 'active': isMaintenance }"
         class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/maintenance"
       >
@@ -25,8 +28,28 @@
   </footer>
 </template>
 
+<script>
+export default {
+  computed: {
+    isReports() {
+      return this.$route.name === "Reports";
+    },
+    isMain() {
+      return this.$route.name === "Main";
+    },
+    isMaintenance() {
+      return this.$route.name === "Maintenance";
+    }
+  }
+}
+</script>
+
 <style scoped>
 #footer {
   height: 10vh;
+}
+
+.active span {
+  color: cyan
 }
 </style>
