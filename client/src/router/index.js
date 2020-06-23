@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Main from "@/views/Main.vue";
 import Maintenance from "@/views/Maintenance.vue";
 import Reports from "@/views/Reports.vue";
-import Test from "@/views/Test.vue";
 
 Vue.use(VueRouter);
 
@@ -22,11 +21,6 @@ const routes = [
     path: "/reports",
     name: "Reports",
     component: Reports
-  },
-  {
-    path: "/test",
-    name: "Test",
-    component: Test
   }
 ];
 
