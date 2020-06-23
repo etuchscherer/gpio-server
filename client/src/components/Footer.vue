@@ -2,7 +2,7 @@
   <footer id="footer">
     <div class="flex h-full items-center">
       <router-link
-        v-bind:class="{ 'active': isReports }"
+        v-bind:class="{ active: isReports }"
         class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/reports"
       >
@@ -10,7 +10,7 @@
       </router-link>
 
       <router-link
-        v-bind:class="{ 'active': isMain }"
+        v-bind:class="{ active: isMain }"
         class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/"
       >
@@ -18,7 +18,7 @@
       </router-link>
 
       <router-link
-        v-bind:class="{ 'active': isMaintenance }"
+        v-bind:class="{ active: isMaintenance }"
         class="text-2xl flex-grow text-gray-700 text-center gray"
         to="/maintenance"
       >
@@ -41,7 +41,7 @@ export default {
       return this.$route.name === "Maintenance";
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -50,6 +50,6 @@ export default {
 }
 
 .active span {
-  color: cyan
+  color: cyan;
 }
 </style>
