@@ -42,6 +42,14 @@ const config = {
       description: 'ambient air temp sensor. Operates on 1-wire interface. Defaults to pin 4.',
       enabled: true
     }
+  },
+  services: {
+    temperatureBallast: {
+      autoFanOn: 29,  // in ° Celsius,
+      autoFanOff: 26,
+      enabled: true,
+      fansOffAtNight: true
+    }
   }
 };
 
