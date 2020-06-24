@@ -1,6 +1,7 @@
 import express from 'express';
 import router from '@/router';
 import gpioService from '@/services/gpio';
+import TemperatureBallast from '@/services/temperature-ballast';
 import initHardware from '@/tasks/init-hardware';
 import cronScheduler from '@/tasks/cron-scheduler';
 import cors from 'cors';
@@ -28,6 +29,10 @@ console.log('done.');
 console.log('initializing gpio service…');
 app.gpioService = gpioService;
 initHardware(app);
+console.log('done.');
+
+console.log('initializing temp ballast service…');
+tempService = new TemperatureBallast(app);
 console.log('done.');
 
 cronScheduler(app);

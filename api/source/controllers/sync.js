@@ -13,7 +13,7 @@ const sync = function(req, res) {
   const { gpioService } = req.app;
   const pump = gpioService.findOrCreateRelay(p.pin);
   const light = gpioService.findOrCreateRelay(l.pin);
-  const fan = gpioService.findOrCreateRelay(e.pin)
+  const fan = gpioService.findOrCreateRelay(e.pin);
 
   const equipment = {
     pump: {
