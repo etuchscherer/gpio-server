@@ -9,18 +9,25 @@ const label = 'TemperatureBallast';
 export default class TemperatureBallast {
 
   constructor(app) {
+    const { gpioService } = app;
     const enabled = isEnabled ? 'enabled' : 'not enabled';
     debug(`temperature-ballast is ${enabled}`, label);
 
     if (isEnabled) {
-      this.intakeFan = app.gpioService.findOrCreateRelay(intake.pin, intake.name);
-      this.exhaustFan = app.gpioService.findOrCreateRelay(exhaust.pin, exhaust.name);
-      this._cache = app.gpio._cache;
+      gpioService.findOrCreateTempSensor().addSubscriber('tempBallast', this._temperatureBallastSubscriber, this);
+      this.intakeFan = gpioService.findOrCreateRelay(intake.pin, intake.name);
+      this.exhaustFan = gpioService.findOrCreateRelay(exhaust.pin, exhaust.name);
     }
   }
 
-  _temperatureBallastSubscriber(temp) {
-    const { intakeFan, exhaustFan } = this;
+  /**
+   *
+   * @param {object} temp Temprature obj from temp-sensor
+   * @param {object} context service/temprature-balast context
+   */
+  _temperatureBallastSubscriber(temp, context =  {}) {
+    const { intakeFan, exhaustFan } = context;
+console.log('yyyyyyy', context);
     const { tempC } = temp;
     const shouldEnergizeFans = intakeFan.isEnergized() === false && tempC >= autoFanOn;
     const shouldDeEnergizeFans = intakeFan.isEnergized() === true && tempC <= autoFanOff;

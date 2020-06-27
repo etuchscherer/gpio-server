@@ -44,8 +44,8 @@ export default class Temp {
    * @param {string} key the name of the subscriber
    * @param {function} callback callback arg is this temp-sensor object
    */
-  addSubscriber(key, callback) {
-    this.subscribers.push({ key, callback });
+  addSubscriber(key, callback, context) {
+    this.subscribers.push({ key, callback, context });
     return this;
   }
 
@@ -69,7 +69,7 @@ export default class Temp {
   }
 
   _doSubscribers() {
-    this.subscribers.forEach(el => el.callback(this));
+    this.subscribers.forEach(el => el.callback(this, el.context));
   }
 
   _setLastUpdated(temp) {
