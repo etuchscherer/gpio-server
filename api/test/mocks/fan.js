@@ -5,7 +5,7 @@ export default function getFan() {
     isEnergized() {
       return this.energized;
     },
-    on() {
+    toggle() {
       this.energized = !this.energized;
     }
   }
