@@ -11,7 +11,7 @@ export default class Relay extends Pin {
   }
 
   /**
-   * Energizes a relay
+   * Energizes a relay.
    */
   energize() {
     return this._setState(0);
