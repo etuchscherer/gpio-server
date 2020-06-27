@@ -61,6 +61,8 @@ lib, like `node-rpio`, I'm not sure yet. But it's on my mind.
 
 ## Debugging
 
-To debug the client you can enable the [vue-devtools app]() on your local machine. Follow the steps for remote debugging.
+To debug the client you can enable the [vue-devtools app](https://github.com/vuejs/vue-devtools/blob/dev/packages/shell-electron/README.md) on your local machine. Follow the steps for remote debugging.
 
 This is the easiest thing to do.
+
+You can also forward port 9222 on your PI, and attempt remote debugging over the chrome network inspector.
