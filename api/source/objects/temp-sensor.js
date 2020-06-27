@@ -65,7 +65,7 @@ export default class Temp {
     this.tempC = getTempC();
     this._doSubscribers();
 
-    // this.tempF = celsiusToFahrenheit(this.tempC);
+    this.tempF = celsiusToFahrenheit(this.tempC);
   }
 
   _doSubscribers() {

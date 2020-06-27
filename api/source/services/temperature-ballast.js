@@ -27,7 +27,7 @@ export default class TemperatureBallast {
    */
   _temperatureBallastSubscriber(temp, context =  {}) {
     const { intakeFan, exhaustFan } = context;
-console.log('yyyyyyy', context);
+
     const { tempC } = temp;
     const shouldEnergizeFans = intakeFan.isEnergized() === false && tempC >= autoFanOn;
     const shouldDeEnergizeFans = intakeFan.isEnergized() === true && tempC <= autoFanOff;

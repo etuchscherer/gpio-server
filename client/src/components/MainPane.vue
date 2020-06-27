@@ -3,7 +3,7 @@
     <div class="card grid-main-pane h-full rounded-xl">
       <div class="grid-main-pane-data flex justify-center items-center">
         <div class="text-6xl font-bold text-gray-100">
-          {{ temps.degreesCelsuis | toDegreesFahrenheit }}°
+          {{ temps.degreesCelsius | toDegreesFahrenheit }}°
         </div>
       </div>
       <div class="grid-main-pane-light flex justify-center items-center">
