@@ -66,16 +66,24 @@ export default {
       this.pollingInterval = setInterval(() => {
         this.$store.dispatch("fetchTemps");
       }, 30000);
+    },
+    pollForStatus() {
+      this.statusInterval = setInterval(() => {
+        this.$store.dispatch("syncStatus");
+      }, 25000);
     }
   },
   created() {
     this.$store.dispatch("fetchTemps");
+    this.$store.dispatch("syncStatus");
     this.pollTemp();
     this.updateTime();
+    this.pollForStatus();
   },
   beforeDestroy() {
     clearInterval(this.pollingInterval);
     clearInterval(this.clockInterval);
+    clearInterval(this.statusInterval);
   }
 };
 </script>
