@@ -58,3 +58,9 @@ Uhh. This has been a major PITA. Due to using `onoff` for pin interaction, I can
 tests for objects or services, or start the server on OSX. ( My primary dev machine. ) I'm actively working
 on a solution to this problem, wether that means mocking epoll and a fs, or switching to a different
 lib, like `node-rpio`, I'm not sure yet. But it's on my mind.
+
+## Debugging
+
+To debug the client you can enable the [vue-devtools app]() on your local machine. Follow the steps for remote debugging.
+
+This is the easiest thing to do.
