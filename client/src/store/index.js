@@ -32,7 +32,7 @@ export default new Vuex.Store({
       return name => {
         return state.equipment[name];
       };
-    },
+    }
   },
   mutations: {
     setPump(state, pump) {

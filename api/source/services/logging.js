@@ -1,10 +1,10 @@
 import { createLogger, format, transports } from 'winston';
 
-const { combine, timestamp, label, prettyPrint, colorize } = format;
+const { combine, colorize } = format;
 
 const logger = createLogger({
   level: 'debug',
-  format: combine(label({ label: 'Cache' }), timestamp(), prettyPrint()),
+  format: format.json(),
   transports: [
     new transports.Console({
       format: combine(colorize()),
@@ -24,6 +24,13 @@ const debug = function(message, label) {
   return logger.log({ level, message, label });
 };
 
+const info = function(message, label) {
+  const level = 'info';
+  if (!label) label = 'info';
+
+  return logger.log({ level, message, label});
+};
+
 export default logger;
 
-export { debug };
+export { debug, info };

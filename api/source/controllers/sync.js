@@ -8,12 +8,12 @@ const { pump: p, light: l, exhaust: e } = config.equipment;
  * @param {object} req
  * @param {object} res
  */
-const sync = function(req, res) {
+const sync = function(req, res, next) {
 
   const { gpioService } = req.app;
   const pump = gpioService.findOrCreateRelay(p.pin);
   const light = gpioService.findOrCreateRelay(l.pin);
-  const fan = gpioService.findOrCreateRelay(e.pin)
+  const fan = gpioService.findOrCreateRelay(e.pin);
 
   const equipment = {
     pump: {
@@ -31,6 +31,7 @@ const sync = function(req, res) {
   };
 
   res.json(equipment);
+  return next();
 };
 
 export { sync };

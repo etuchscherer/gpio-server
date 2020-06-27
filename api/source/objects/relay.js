@@ -10,8 +10,19 @@ export default class Relay extends Pin {
     this._setState(1);
   }
 
+  /**
+   * Energizes a relay.
+   */
   energize() {
     return this._setState(0);
+  }
+
+  on() {
+    throw new Error('relays work on a not gate... use "energize" instead');
+  }
+
+  off() {
+    throw new Error('relays work on a not gate... use "deEnergize" instead');
   }
 
   /**

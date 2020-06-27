@@ -39,4 +39,12 @@ describe('relay tests', () => {
   it('isEnergized() returns false', () => {
     assert.strictEqual(relay.isEnergized(), false);
   });
+
+  it('on should throw an error', () => {
+    assert.throws(relay.on, 'relays work on a not gate... use "energize" instead');
+  });
+
+  it('off should throw an error', () => {
+    assert.throws(relay.off, 'relays work on a not gate... use "deEnergize" instead')
+  });
 });

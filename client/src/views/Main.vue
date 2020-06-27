@@ -1,70 +1,126 @@
 <template>
-  <div>
-    <div class="flex flex-col bg-gray-200 m-4">
-      <h1 class="px-4">This is the main dashboard</h1>
+  <div class="grid">
+    <MainPane />
+
+    <div class="info-pane p-2 pb-1">
+      <div class="card rounded-xl">
+        <p class="temp text-6xl font-bold text-gray-100">83°</p>
+        <p class="date text-6xl font-bold text-gray-100">
+          {{ time | moment("dddd, MMMM Do") }}
+        </p>
+        <p class="time text-6xl font-bold text-gray-100">
+          {{ time | moment("h:mm A") }}
+        </p>
+      </div>
     </div>
 
-    <div class="flex-1 text-xl">
-      internal temp
-      <span class="text-6xl">
-        {{ temps.degreesCelsius | toDegreesFahrenheit }}°F
-      </span>
-      {{ temps.degreesCelsius }}°C
+    <div class="video-pane p-2 pt-1">
+      <div class="card rounded-xl flex justify-center">
+        <div class="self-center">
+          <div class="video-placeholder" />
+        </div>
+      </div>
     </div>
 
-    <div class="flex-1 text-xl">
-      last action was <span class="text-4xl">5 minutes ago</span>
-    </div>
-
-    <div class="flex-1">
-      <span v-if="isPumpEnergized">Pump is On</span>
-      <span v-else>Pump is OFF</span>
-    </div>
-    <div class="flex-1">
-      <span v-if="isLightEnergized">Light is On</span>
-      <span v-else>Light is OFF</span>
-    </div>
-    <div class="flex-1">
-      <span v-if="isFanEnergized">Fan is On</span>
-      <span v-else>Fan is OFF</span>
+    <div class="footer-pane px-2">
+      <Footer class="card rounded-xl rounded-b-none" />
     </div>
   </div>
 </template>
 
 <script>
-import { toDegreesFahrenheit } from "@/filters/index";
+import Footer from "@/components/Footer";
+import MainPane from "@/components/MainPane";
 
 export default {
+  components: {
+    Footer,
+    MainPane
+  },
+  data() {
+    return {
+      time: new Date()
+    };
+  },
   computed: {
     temps() {
       return this.$store.getters.temps;
     },
     isPumpEnergized() {
-      return this.$store.getters.findEquipment('pump').isEnergized;
+      return this.$store.getters.findEquipment("pump").isEnergized;
     },
     isLightEnergized() {
-      return this.$store.getters.findEquipment('light').isEnergized;
+      return this.$store.getters.findEquipment("light").isEnergized;
     },
     isFanEnergized() {
-      return this.$store.getters.findEquipment('fan').isEnergized;
+      return this.$store.getters.findEquipment("fan").isEnergized;
     }
   },
-  filters: {
-    toDegreesFahrenheit
-  },
   methods: {
+    updateTime() {
+      this.clockInterval = setInterval(() => {
+        this.time = new Date();
+      }, 1000);
+    },
     pollTemp() {
       this.pollingInterval = setInterval(() => {
         this.$store.dispatch("fetchTemps");
       }, 30000);
+    },
+    pollForStatus() {
+      this.statusInterval = setInterval(() => {
+        this.$store.dispatch("syncStatus");
+      }, 25000);
     }
   },
   created() {
     this.$store.dispatch("fetchTemps");
+    this.$store.dispatch("syncStatus");
     this.pollTemp();
+    this.updateTime();
+    this.pollForStatus();
   },
   beforeDestroy() {
     clearInterval(this.pollingInterval);
+    clearInterval(this.clockInterval);
+    clearInterval(this.statusInterval);
   }
 };
 </script>
+
+<style scoped>
+.grid {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  grid-template-rows: 0.45fr 0.45fr 0.1;
+  min-width: 100%;
+}
+
+.main-pane {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  height: 90vmin;
+}
+
+.info-pane {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  height: 45vmin;
+}
+
+.video-pane {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  height: 45vmin;
+}
+
+.footer-pane {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+  height: 10vmin;
+}
+
+.video-placeholder {
+  color: gainsboro;
+}
+</style>

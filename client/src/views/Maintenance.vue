@@ -9,21 +9,24 @@
       <ManualSwitch equipment="light" />
       <ManualSwitch equipment="fan" />
     </div>
+
+    <Footer class="fixed bottom-0 w-full card rounded-xl rounded-b-none" />
   </div>
 </template>
 
 <script>
 import ManualSwitch from "@/components/ManualSwitch";
+import Footer from "@/components/Footer";
 
 export default {
   computed: {
     isEnergized() {
-      return this.$store.getters.findEquipment('pump').isEnergized;
+      return this.$store.getters.findEquipment("pump").isEnergized;
     }
   },
   methods: {
     togglePump() {
-      const { isEnergized } = this.$store.getters.findEquipment('pump');
+      const { isEnergized } = this.$store.getters.findEquipment("pump");
       this.$store.dispatch("togglePump", !isEnergized);
     },
     pollForStatus() {
@@ -33,7 +36,8 @@ export default {
     }
   },
   components: {
-    ManualSwitch
+    ManualSwitch,
+    Footer
   },
   created() {
     this.$store.dispatch("syncStatus");

@@ -3,21 +3,16 @@
     <div class="container mx-auto flex-grow">
       <router-view />
     </div>
-    <Footer></Footer>
   </div>
 </template>
 
-<script>
-import Footer from "@/components/Footer";
-
-export default {
-  components: {
-    Footer
-  }
-};
-</script>
-
 <style lang="scss">
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,5 +39,11 @@ export default {
   .container {
     flex: 1;
   }
+}
+
+.card {
+  background-color: gray;
+  border-radius: 2rem;
+  height: 100%;
 }
 </style>

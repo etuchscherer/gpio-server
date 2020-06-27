@@ -4,7 +4,7 @@ const { intake, exhaust } = config.equipment;
 
 import { timestamp as ts } from '@/utils/timestamp';
 
-const toggle = function(req, res) {
+const toggle = function(req, res, next) {
   const { app } = req;
   const intakeFan = app.gpioService.findOrCreateRelay(intake.pin, intake.name);
   const exhaustFan = app.gpioService.findOrCreateRelay(exhaust.pin, exhaust.name);
@@ -16,6 +16,7 @@ const toggle = function(req, res) {
   const timestamp = ts();
 
   res.json({ isEnergized, isEnabled, timestamp, name: 'combined fans' });
+  return next();
 };
 
 export { toggle };

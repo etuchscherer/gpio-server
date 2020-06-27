@@ -1,3 +1,5 @@
+import winston from 'winston';
+
 const OFF = 0;
 const ON = 1;
 const PUMP = 18;
@@ -7,6 +9,9 @@ const EXHAUST = 22;
 const TEMP = 4;
 
 const config = {
+  logging: {
+    format: winston.format.json()
+  },
   gpio: {
     capableEnvironments: ['pi', 'test'],
     validPinstates: [OFF, ON]
@@ -41,6 +46,14 @@ const config = {
       name: 'ambient temp sensor',
       description: 'ambient air temp sensor. Operates on 1-wire interface. Defaults to pin 4.',
       enabled: true
+    }
+  },
+  services: {
+    temperatureBallast: {
+      autoFanOn: 29,  // in ° Celsius,
+      autoFanOff: 26,
+      enabled: true,
+      fansOffAtNight: true
     }
   }
 };

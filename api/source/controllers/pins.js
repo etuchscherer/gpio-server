@@ -41,6 +41,7 @@ const destroy = function(req, res) {
   app.gpioService.destroy(params.id);
   success = true;
   res.json({ success });
+  return next();
 };
 
 export { destroy, read, set, status };

@@ -37,7 +37,7 @@ const cronScheduler = function(app) {
   });
 
   // run every minute
-  cron.schedule('* * * * *', () => {
+  cron.schedule('*/10 * * * * *', () => {
     debug('reading temp from bay', label);
     gpioService.findOrCreateTempSensor().read();
   });
