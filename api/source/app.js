@@ -32,7 +32,7 @@ initHardware(app);
 console.log('done.');
 
 console.log('initializing temp ballast service…');
-tempService = new TemperatureBallast(app);
+app.tempService = new TemperatureBallast(app);
 console.log('done.');
 
 cronScheduler(app);
