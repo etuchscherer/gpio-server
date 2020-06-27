@@ -34,14 +34,14 @@ export default class TemperatureBallast {
 
     if (shouldEnergizeFans) {
       debug('cabinet is too hot, energizing fans', label);
-      intakeFan.on();
-      exhaustFan.on();
+      intakeFan.toggle();
+      exhaustFan.toggle();
     }
 
     if (shouldDeEnergizeFans) {
       debug('cabinet is cool, disabling fans', label);
-      intakeFan.off();
-      exhaustFan.off();
+      intakeFan.toggle();
+      exhaustFan.toggle();
     }
   }
 
