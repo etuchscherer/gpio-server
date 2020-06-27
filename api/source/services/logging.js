@@ -1,10 +1,10 @@
 import { createLogger, format, transports } from 'winston';
 
-const { combine, timestamp, label, prettyPrint, colorize } = format;
+const { combine, colorize } = format;
 
 const logger = createLogger({
   level: 'debug',
-  format: combine(label({ label: 'Cache' }), timestamp(), prettyPrint()),
+  format: format.json(),
   transports: [
     new transports.Console({
       format: combine(colorize()),

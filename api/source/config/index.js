@@ -1,3 +1,5 @@
+import winston from 'winston';
+
 const OFF = 0;
 const ON = 1;
 const PUMP = 18;
@@ -7,6 +9,9 @@ const EXHAUST = 22;
 const TEMP = 4;
 
 const config = {
+  logging: {
+    format: winston.format.json()
+  },
   gpio: {
     capableEnvironments: ['pi', 'test'],
     validPinstates: [OFF, ON]
