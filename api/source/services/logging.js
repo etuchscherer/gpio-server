@@ -24,6 +24,13 @@ const debug = function(message, label) {
   return logger.log({ level, message, label });
 };
 
+const info = function(message, label) {
+  const level = 'info';
+  if (!label) label = 'info';
+
+  return logger.log({ level, message, label});
+};
+
 export default logger;
 
-export { debug };
+export { debug, info };

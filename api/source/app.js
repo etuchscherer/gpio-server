@@ -6,6 +6,8 @@ import initHardware from '@/tasks/init-hardware';
 import cronScheduler from '@/tasks/cron-scheduler';
 import cors from 'cors';
 import { createLogger, format, transports } from 'winston';
+import controllerDebug from '@/middleware/controller-debug';
+import logAfterSend from '@/middleware/log-after-send';
 
 const { combine, colorize } = format;
 
@@ -38,6 +40,8 @@ console.log('done.');
 cronScheduler(app);
 
 app.use(cors());
+app.use('/', controllerDebug);
 app.use(router);
+app.use('/', logAfterSend);
 
 app.listen(port, () => console.log(`Gpio server application listening on http://localhost:${port}`));
