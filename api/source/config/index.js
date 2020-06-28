@@ -54,6 +54,19 @@ const config = {
       autoFanOff: 26,
       enabled: true,
       fansOffAtNight: true
+    },
+    openWeatherMap: {
+      apiKey: '2d98f433111b846f73d2c7d7c9dfc990',
+      city: {
+        'id': 5789425,
+        'name': 'Cathcart',
+        'state': 'WA',
+        'country': 'US',
+        'coord': {
+          'lon': -122.099289,
+          'lat': 47.847881
+        }
+      },
     }
   }
 };

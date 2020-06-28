@@ -1,5 +1,6 @@
 import config from '@/config';
 import { debug } from '@/services/logging';
+import getWeather from '@/tasks/current-weather';
 import cron from 'node-cron';
 
 const { pump, light } = config.equipment;
@@ -37,6 +38,13 @@ const cronScheduler = function(app) {
   });
 
   // run every minute
+  cron.schedule('* * * * *', () => {
+    debug('fetching weather from openWeatherMap', label);
+    const { data } = getWeather();
+    console.log( data );
+  });
+
+  // run every 10 seconds
   cron.schedule('*/10 * * * * *', () => {
     debug('reading temp from bay', label);
     gpioService.findOrCreateTempSensor().read();
