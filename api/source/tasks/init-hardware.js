@@ -1,14 +1,20 @@
 import config from '@/config';
+import getWeather from '@/tasks/current-weather';
 
 const { pump, exhaust, intake, light } = config.equipment;
 
 const init = function(app) {
-  const { gpioService } = app;
+  const { systemFactory } = app;
 
-  gpioService.findOrCreateRelay(pump.pin, 'pump');
-  gpioService.findOrCreatePin(light.pin, 'light');
-  gpioService.findOrCreateRelay(intake.pin, 'fan');
-  gpioService.findOrCreateRelay(exhaust.pin, 'fan');
+  systemFactory.findOrCreateRelay(pump.pin, 'pump');
+  systemFactory.findOrCreatePin(light.pin, 'light');
+  systemFactory.findOrCreateRelay(intake.pin, 'fan');
+  systemFactory.findOrCreateRelay(exhaust.pin, 'fan');
+  systemFactory.findOrCreateWeatherService();
+
+
+  // debug('fetching weather from openWeatherMap', label);
+  getWeather().then(resp => { console.log('))))))))) ', resp.headers.result, resp); });
 };
 
 export default init;

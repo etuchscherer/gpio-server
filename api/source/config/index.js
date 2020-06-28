@@ -8,6 +8,8 @@ const INTAKE = 23;
 const EXHAUST = 22;
 const TEMP = 4;
 
+const WEATHER_SERVICE_CACHE_KEY = 'weather-service';
+
 const config = {
   logging: {
     format: winston.format.json()
@@ -56,7 +58,8 @@ const config = {
       fansOffAtNight: true
     },
     openWeatherMap: {
-      apiKey: '2d98f433111b846f73d2c7d7c9dfc990',
+      apiKey: process.env.WUKEY,  // WUKEY = weather underground api key
+      units: 'metric',   // may be metric, imperial, or kelvin
       city: {
         'id': 5789425,
         'name': 'Cathcart',
@@ -73,4 +76,4 @@ const config = {
 
 export default config;
 
-export { ON, OFF, LIGHT, PUMP, INTAKE, EXHAUST, TEMP };
+export { ON, OFF, LIGHT, PUMP, INTAKE, EXHAUST, TEMP, WEATHER_SERVICE_CACHE_KEY };

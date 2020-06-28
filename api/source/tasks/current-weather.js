@@ -1,11 +1,10 @@
-import { curly } from 'node-libcurl';
+const axios = require('axios');
 import config from '@/config';
 
-const { apiKey, city } = config.openWeatherMap;
+const { apiKey, city, units } = config.services.openWeatherMap;
 
-export default function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?id=${city.id}&appid=${apiKey}`;
-  const { statusCode, data } = await curly.get(url);
-
-  return { statusCode, data: JSON.parse(data) };
+export default async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?id=${city.id}&appid=${apiKey}&units=${units}`;
+  const { data } = await axios.get(url);
+  return data;
 }

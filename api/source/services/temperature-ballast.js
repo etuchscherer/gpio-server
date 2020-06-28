@@ -9,14 +9,14 @@ const label = 'TemperatureBallast';
 export default class TemperatureBallast {
 
   constructor(app) {
-    const { gpioService } = app;
+    const { systemFactory } = app;
     const enabled = isEnabled ? 'enabled' : 'not enabled';
     debug(`temperature-ballast is ${enabled}`, label);
 
     if (isEnabled) {
-      gpioService.findOrCreateTempSensor().addSubscriber('tempBallast', this._temperatureBallastSubscriber, this);
-      this.intakeFan = gpioService.findOrCreateRelay(intake.pin, intake.name);
-      this.exhaustFan = gpioService.findOrCreateRelay(exhaust.pin, exhaust.name);
+      systemFactory.findOrCreateTempSensor().addSubscriber('tempBallast', this._temperatureBallastSubscriber, this);
+      this.intakeFan = systemFactory.findOrCreateRelay(intake.pin, intake.name);
+      this.exhaustFan = systemFactory.findOrCreateRelay(exhaust.pin, exhaust.name);
     }
   }
 

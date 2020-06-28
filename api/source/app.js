@@ -1,6 +1,6 @@
 import express from 'express';
 import router from '@/router';
-import gpioService from '@/services/gpio';
+import SystemFactory from '@/services/system-factory';
 import TemperatureBallast from '@/services/temperature-ballast';
 import initHardware from '@/tasks/init-hardware';
 import cronScheduler from '@/tasks/cron-scheduler';
@@ -28,8 +28,8 @@ console.log('initializing logger…');
 app.logger = logger;
 console.log('done.');
 
-console.log('initializing gpio service…');
-app.gpioService = gpioService;
+console.log('initializing system factory');
+app.systemFactory = new SystemFactory();
 initHardware(app);
 console.log('done.');
 

@@ -5,7 +5,7 @@
  */
 const read = function(req, res) {
   const { params, app } = req;
-  const isEnergized = app.gpioService.findOrCreateRelay(+params.id).isEnergized();
+  const isEnergized = app.systemFactory.findOrCreateRelay(+params.id).isEnergized();
 
   res.json({ isEnergized });
 };
@@ -17,14 +17,14 @@ const read = function(req, res) {
  */
 const set = function(req, res) {
   const { params, app } = req;
-  const pin = app.gpioService.findOrCreateRelay(+params.id);
+  const pin = app.systemFactory.findOrCreateRelay(+params.id);
   const isEnergized = pin.toggle(+params.state).isEnergized();
   res.json({ isEnergized });
 };
 
 const status = function(req, res) {
   const { app } = req;
-  const cache = app.gpioService.dumpAll();
+  const cache = app.systemFactory.dumpAll();
 
   res.json({ cache });
 };
@@ -38,7 +38,7 @@ const destroy = function(req, res) {
   const { params, app } = req;
   let success = false;
 
-  app.gpioService.destroy(params.id);
+  app.systemFactory.destroy(params.id);
   success = true;
   res.json({ success });
   return next();
