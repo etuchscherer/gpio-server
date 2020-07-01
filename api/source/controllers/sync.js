@@ -3,8 +3,8 @@ import config from '@/config';
 const { pump: p, light: l, exhaust: e } = config.equipment;
 
 /**
- * This route is intended to supply quick info to the
- * client, for syncing up state.
+ * This route is sypplies data, to keep the
+ * client in sync with the equipment
  * @param {object} req
  * @param {object} res
  */
@@ -14,6 +14,7 @@ const sync = function(req, res, next) {
   const pump = systemFactory.findOrCreateRelay(p.pin);
   const light = systemFactory.findOrCreateRelay(l.pin);
   const fan = systemFactory.findOrCreateRelay(e.pin);
+  const weatherService = systemFactory.findOrCreateWeatherService();
 
   const equipment = {
     pump: {
@@ -30,7 +31,9 @@ const sync = function(req, res, next) {
     }
   };
 
-  res.json(equipment);
+  const weather = weatherService.getReport();
+
+  res.json({ equipment, weather });
   return next();
 };
 
