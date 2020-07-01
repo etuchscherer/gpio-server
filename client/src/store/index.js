@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    weather: {},
     temps: {
       degreesCelsius: 100,
       lastUpdated: undefined
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    weather(state) {
+      return state.weather;
+    },
     temps(state) {
       return state.temps;
     },
@@ -50,6 +54,9 @@ export default new Vuex.Store({
     setTemps(state, payload) {
       state.temps.degreesCelsius = payload.tempC;
       state.temps.lastUpdated = payload.lastUpdated;
+    },
+    setWeather(state, payload) {
+      state.weather = payload
     }
   },
   actions: {
@@ -84,13 +91,14 @@ export default new Vuex.Store({
     syncStatus({ commit }) {
       fetch("http://localhost:3000/sync")
         .then(r => r.json())
-        .then(equipment => {
-          console.log("Dump status", equipment);
+        .then(data => {
+          const { equipment, weather } = data;
           const { light, fan, pump } = equipment;
           // debugger;
           commit("setLight", light);
           commit("setFan", fan);
           commit("setPump", pump);
+          commit("setWeather", weather);
         });
     }
   },

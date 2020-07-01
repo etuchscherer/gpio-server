@@ -4,7 +4,7 @@
 
     <div class="info-pane p-2 pb-1">
       <div class="card rounded-xl">
-        <p class="temp text-6xl font-bold text-gray-100">83°</p>
+        <p class="temp text-6xl font-bold text-gray-100">{{ weather.main.temp | toDegreesFahrenheit }}°</p>
         <p class="date text-6xl font-bold text-gray-100">
           {{ time | moment("dddd, MMMM Do") }}
         </p>
@@ -31,6 +31,7 @@
 <script>
 import Footer from "@/components/Footer";
 import MainPane from "@/components/MainPane";
+import { toDegreesFahrenheit } from '@/filters';
 
 export default {
   components: {
@@ -42,7 +43,13 @@ export default {
       time: new Date()
     };
   },
+  filters: {
+    toDegreesFahrenheit
+  },
   computed: {
+    weather() {
+      return this.$store.getters.weather;
+    },
     temps() {
       return this.$store.getters.temps;
     },
