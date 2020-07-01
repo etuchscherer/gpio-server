@@ -6,8 +6,12 @@ const { pump, exhaust, intake, light } = config.equipment;
 const init = function(app) {
   const { systemFactory } = app;
 
+  // initialize a new gpio board - first!
+  systemFactory.findOrCreateGpio();
+
+  // initialize the light
+  systemFactory.findOrCreatePin(light.pin, 'main overhead light');
   systemFactory.findOrCreateRelay(pump.pin, 'pump');
-  systemFactory.findOrCreatePin(light.pin, 'light');
   systemFactory.findOrCreateRelay(intake.pin, 'fan');
   systemFactory.findOrCreateRelay(exhaust.pin, 'fan');
   systemFactory.findOrCreateWeatherService();

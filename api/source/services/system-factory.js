@@ -1,12 +1,14 @@
 import Cache from '@/services/cache';
-import { debug } from 'winston';
+import { debug } from '@/services/logging';
+import Board from '@/objects/gpio';
 import Relay from '@/objects/relay';
-import Pin from '@/objects/pin';
 import TempSensor from '@/objects/temp-sensor';
 import { WEATHER_SERVICE_CACHE_KEY, TEMP as TEMP_SENSOR } from '@/config';
 import WeatherReport from '@/services/weather-report';
+import boardConfig from '@/config/gpio';
 
 const label = 'system-factory';
+const GPIO_BOARD_CACHE_KEY = 'gpio-board-cache-key';
 
 export default class SystemFactory {
 
@@ -15,22 +17,37 @@ export default class SystemFactory {
     this._cache = new Cache();
   }
 
+  findOrCreateGpio() {
+    const doesExist = this._cache.has(GPIO_BOARD_CACHE_KEY);
+    const status = doesExist ? 'fetching' : 'creating';
+    debug(`${status} gpio board in the cache`, label);
+
+    if (!doesExist) {
+      this._cache.set(GPIO_BOARD_CACHE_KEY, new Board(boardConfig));
+    }
+
+    return this._cache.get(GPIO_BOARD_CACHE_KEY);
+  }
+
   /**
   * Finds a pin in the cache, or creates a new one for the specified id.
   * Pushes to the cache upon creation.
   * @param {number} id The pin that drives the relay
   * @param {string} description
   */
-  findOrCreateRelay(id, description) {
-    const doesExist = this._cache.has(+id);
-    const status = doesExist ? 'fetching' : 'creating';
-    debug(`${status} relay ${id} in the cache`, label);
+  findOrCreateRelay(id, description, isMocked = 'false') {
+    const gpio = this.findOrCreateGpio();
+    let pin = gpio.getPin(+id);
 
-    if (!doesExist) {
-      this._cache.set(+id, new Relay(description, +id));
+    if (pin.typeOf !== 'relay') {
+      // create the relay
+      debug(`setting up pin as a relay on gpio ${id}`, label);
+      pin = new Relay(description, +id, 'out', isMocked);
+    } else {
+      debug(`getting relay from gpio ${id}`, label);
     }
 
-    return this._cache.get(+id);
+    return pin;
   }
 
   /**
@@ -38,31 +55,30 @@ export default class SystemFactory {
   * Pushes to the cache upon creation.
   * @param {number} id The pin that drives the relay
   */
-  findOrCreatePin(id) {
-    const doesExist = this._cache.has(+id);
-    const status = doesExist ? 'fetching' : 'creating';
-    debug(`${status} a pin ${id} in the cache`, label);
+  findOrCreatePin(id, description = '') {
+    const gpio = this.findOrCreateGpio();
+    const pin = gpio.getPin(+id);
+    pin.description = `${pin.description} ${description}`;
+    debug(`getting pin ${id} from the gpio`, label);
 
-    if (!doesExist) {
-      this._cache.set(+id, new Pin(+id));
-    }
-
-    return this._cache.get(+id);
+    return pin;
   }
 
   /**
    * Returns a temp sensor object ( effectivly a singleton ).
    */
-  findOrCreateTempSensor() {
-    const doesExist = this._cache.has(TEMP_SENSOR);
-    const status = doesExist ? 'fetching' : 'creating';
-    debug(`${status} a pin ${TEMP_SENSOR} in the cache`, label);
+  findOrCreateTempSensor(id = TEMP_SENSOR, isMocked) {
+    const gpio = this.findOrCreateGpio();
+    let pin = gpio.getPin(id);
 
-    if (!doesExist) {
-      this._cache.set(TEMP_SENSOR, new TempSensor());
+    if (pin.name !== 'temp sensor') {
+      debug(`creating a temp sensor on gpio ${id}`, label);
+      pin = new TempSensor(id, isMocked);
+    } else {
+      debug(`fetched a temp sensor from gpio ${id}`, label);
     }
 
-    return this._cache.get(TEMP_SENSOR);
+    return pin;
   }
 
   findOrCreateWeatherService() {

@@ -2,10 +2,10 @@ import Pin from '@/objects/pin';
 
 export default class Relay extends Pin {
 
-  constructor(name, id, direction = 'out') {
-    super(id, direction);
+  constructor(description, id, direction = 'out', isMocked = false) {
+    super(id, description, 1, direction, isMocked);
 
-    this.name = name;
+    this.description = description;
     this.typeOf = 'relay';
     this._setState(1);
   }

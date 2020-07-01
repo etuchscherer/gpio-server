@@ -7,15 +7,15 @@ let relay;
 describe('relay tests', () => {
 
   beforeEach(() => {
-    relay = new Relay('test', 1);
+    relay = new Relay('test', 1, 'out', true);
   });
 
   it('can create a relay', () => {
     assert.strictEqual(relay.constructor.name, 'Relay');
   });
 
-  it('sets the name of the relay', () => {
-    assert.strictEqual(relay.name, 'test');
+  it('sets the description of the relay', () => {
+    assert.strictEqual(relay.description, 'test');
   });
 
   it('sets the id properly', () => {

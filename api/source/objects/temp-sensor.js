@@ -5,12 +5,13 @@ import { remove } from '../utils/collection';
 
 export default class Temp {
 
-  constructor(id = 4) {
+  constructor(id = 4, isMocked = 'false') {
     this.subscribers = [];
     this.name = 'temp sensor';
     this.typeOf = '1 wire interface';
     this.lastUpdated;
     this.id = id;
+    this.isMocked = isMocked;
     this.addSubscriber('_setFahrenheit', this._setFahrenheit);
     this.addSubscriber('_lastUpdated', this._setLastUpdated);
   }
@@ -62,7 +63,13 @@ export default class Temp {
    * reads from the sensor and sets to memory;
    */
   _setTemp() {
-    this.tempC = getTempC();
+
+    if (!this.isMocked) {
+      this.tempC = getTempC();
+    } else {
+      this.tempC = 15;
+    }
+
     this._doSubscribers();
 
     this.tempF = celsiusToFahrenheit(this.tempC);

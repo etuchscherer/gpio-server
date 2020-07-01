@@ -7,7 +7,7 @@ let pin;
 describe('pin tests', () => {
 
   beforeEach(() => {
-    pin = new Pin(1);
+    pin = new Pin(1, 'test pin', 0, 'out', true);
   });
 
   it('can create a pin', () => {

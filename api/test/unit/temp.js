@@ -4,11 +4,12 @@ import moment from 'moment';
 import Temp from '@/objects/temp-sensor';
 
 let tempSensor;
+const isMocked = true;
 
 describe('temperature tests', () => {
 
   beforeEach(() => {
-    tempSensor = new Temp();
+    tempSensor = new Temp(4, isMocked);
   });
 
   it('subscribers work', () => {

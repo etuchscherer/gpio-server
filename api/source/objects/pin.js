@@ -1,7 +1,7 @@
 import config from '@/config';
 
-const { capableEnvironments, validPinstates } = config.gpio;
-const shouldUseGpio = capableEnvironments.includes(process.env.OS_ENV);
+const { validPinstates } = config.gpio;
+// const shouldUseGpio = capableEnvironments.includes(process.env.OS_ENV);
 
 export default class Pin {
 
@@ -10,15 +10,13 @@ export default class Pin {
    * @param {number} id
    * @param {string} direction
    */
-  constructor(id, direction = 'out') {
+  constructor(id, description, state = 0, direction = 'out', isMocked = false) {
     this.id = +id;
-    this.direction = direction;
-    this.state = 0;
+    this.description = description;
+    this.isMocked = isMocked;
 
-    if (shouldUseGpio) {
-      const Gpio = require('onoff').Gpio;
-      this.pin = new Gpio(this.id, this.direction);
-    }
+    this.state = state;
+    this.direction = direction;
   }
 
   /**
@@ -64,7 +62,7 @@ export default class Pin {
   isEnergized() {
     let state = this.state;
 
-    if (shouldUseGpio) {
+    if (!this.isMocked) {
       state = this.pin.readSync();
     }
     return state === 1;
@@ -87,7 +85,7 @@ export default class Pin {
     }
     this.state = newState;
 
-    if (shouldUseGpio) {
+    if (!this.isMocked) {
       this.pin.writeSync(this.state);
     }
 
