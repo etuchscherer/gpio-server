@@ -1,7 +1,7 @@
 import express from 'express';
 import router from '@/router';
 import SystemFactory from '@/services/system-factory';
-import TemperatureBallast from '@/services/temperature-ballast';
+import ClimateControl from '@/services/climate-control';
 import initHardware from '@/tasks/init-hardware';
 import cronScheduler from '@/tasks/cron-scheduler';
 import cors from 'cors';
@@ -33,8 +33,8 @@ app.systemFactory = new SystemFactory();
 initHardware(app);
 console.log('done.');
 
-console.log('initializing temp ballast service…');
-app.tempService = new TemperatureBallast(app);
+console.log('initializing climate control service…');
+app.tempService = new ClimateControl(app);
 console.log('done.');
 
 cronScheduler(app);

@@ -8,5 +8,5 @@ export default function getFan() {
     toggle() {
       this.energized = !this.energized;
     }
-  }
+  };
 };
