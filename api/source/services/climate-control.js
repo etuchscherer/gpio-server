@@ -2,19 +2,19 @@ import config from '@/config';
 import { debug } from '@/services/logging';
 
 const { intake, exhaust } = config.equipment;
-const { temperatureBallast } = config.services;
-const { enabled: isEnabled, autoFanOn, autoFanOff } = temperatureBallast;
-const label = 'TemperatureBallast';
+const { climateControl } = config.services;
+const { enabled: isEnabled, autoFanOn, autoFanOff } = climateControl;
+const label = 'climateControl';
 
-export default class TemperatureBallast {
+export default class ClimateControl {
 
   constructor(app) {
     const { systemFactory } = app;
     const enabled = isEnabled ? 'enabled' : 'not enabled';
-    debug(`temperature-ballast is ${enabled}`, label);
+    debug(`climate-control is ${enabled}`, label);
 
     if (isEnabled) {
-      systemFactory.findOrCreateTempSensor().addSubscriber('tempBallast', this._temperatureBallastSubscriber, this);
+      systemFactory.findOrCreateTempSensor().addSubscriber('climateControl', this._climateControlSubscriber, this);
       this.intakeFan = systemFactory.findOrCreateRelay(intake.pin, intake.name);
       this.exhaustFan = systemFactory.findOrCreateRelay(exhaust.pin, exhaust.name);
     }
@@ -25,7 +25,7 @@ export default class TemperatureBallast {
    * @param {object} temp Temprature obj from temp-sensor
    * @param {object} context service/temprature-balast context
    */
-  _temperatureBallastSubscriber(temp, context =  {}) {
+  _climateControlSubscriber(temp, context =  {}) {
     const { intakeFan, exhaustFan } = context;
 
     const { tempC } = temp;

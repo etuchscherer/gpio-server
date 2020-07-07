@@ -51,7 +51,7 @@ const config = {
     }
   },
   services: {
-    temperatureBallast: {
+    climateControl: {
       autoFanOn: 29,  // in ° Celsius,
       autoFanOff: 26,
       enabled: true,

@@ -45,6 +45,6 @@ describe('relay tests', () => {
   });
 
   it('off should throw an error', () => {
-    assert.throws(relay.off, 'relays work on a not gate... use "deEnergize" instead')
+    assert.throws(relay.off, 'relays work on a not gate... use "deEnergize" instead');
   });
 });
