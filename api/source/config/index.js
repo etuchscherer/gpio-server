@@ -2,7 +2,7 @@ import winston from 'winston';
 
 const OFF = 0;
 const ON = 1;
-const PUMP = 18;
+const PUMP = 21;
 const LIGHT = 17;
 const INTAKE = 23;
 const EXHAUST = 22;
@@ -23,7 +23,7 @@ const config = {
       pin: PUMP,
       name: 'main water pump',
       description: 'main pump responsible for watering plants. Runs on 12VDC. Controlled by a multi-channel relay.',
-      enabled: true,
+      enabled: true
     },
     exhaust: {
       pin: EXHAUST,

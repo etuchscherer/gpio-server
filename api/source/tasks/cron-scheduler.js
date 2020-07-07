@@ -15,13 +15,13 @@ const cronScheduler = function(app) {
   // Run every hour at 0 minutes
   cron.schedule('0 * * * *', () => {
     debug('turning main feed pump on', label);
-    systemFactory.findOrCreateRelay(pump.pin).energize();
+    systemFactory.findOrCreatePin(pump.pin).on();
   });
 
   // run on minute ten of every hour
   cron.schedule('10 * * * *', () => {
     debug('turning main feed pump off', label);
-    systemFactory.findOrCreateRelay(pump.pin).deEnergize();
+    systemFactory.findOrCreatePin(pump.pin).off();
   });
 
   // run at 6 AM every day

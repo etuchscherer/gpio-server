@@ -11,7 +11,7 @@ const { pump: p, light: l, exhaust: e } = config.equipment;
 const sync = function(req, res, next) {
 
   const { systemFactory } = req.app;
-  const pump = systemFactory.findOrCreateRelay(p.pin);
+  const pump = systemFactory.findOrCreatePin(p.pin);
   const light = systemFactory.findOrCreateRelay(l.pin);
   const fan = systemFactory.findOrCreateRelay(e.pin);
 
