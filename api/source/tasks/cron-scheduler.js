@@ -8,38 +8,44 @@ const label = 'scheduled-task';
 
 const cronScheduler = function(app) {
 
-  const { gpioService } = app;
+  const { systemFactory } = app;
 
   console.log('initializing scheduled jobs…');
 
   // Run every hour at 0 minutes
   cron.schedule('0 * * * *', () => {
     debug('turning main feed pump on', label);
-    gpioService.findOrCreateRelay(pump.pin).energize();
+    systemFactory.findOrCreatePin(pump.pin).on();
   });
 
   // run on minute ten of every hour
   cron.schedule('10 * * * *', () => {
     debug('turning main feed pump off', label);
-    gpioService.findOrCreateRelay(pump.pin).deEnergize();
+    systemFactory.findOrCreatePin(pump.pin).off();
   });
 
   // run at 6 AM every day
   cron.schedule('0 6 * * *', () => {
     debug('turning on main overhead lights', label);
-    gpioService.findOrCreatePin(light.pin).on();
+    systemFactory.findOrCreatePin(light.pin).on();
   });
 
   // run at 8 PM every day
   cron.schedule('0 20 * * *', () => {
     debug('turning off main overhead lights', label);
-    gpioService.findOrCreatePin(light.pin).off();
+    systemFactory.findOrCreatePin(light.pin).off();
   });
 
   // run every minute
+  cron.schedule('* * * * *', () => {
+    debug('updating weather', label);
+    systemFactory.findOrCreateWeatherService().update();
+  });
+
+  // run every 10 seconds
   cron.schedule('*/10 * * * * *', () => {
     debug('reading temp from bay', label);
-    gpioService.findOrCreateTempSensor().read();
+    systemFactory.findOrCreateTempSensor().read();
   });
 };
 

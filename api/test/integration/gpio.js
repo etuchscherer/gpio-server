@@ -1,4 +1,4 @@
-import gpioService from '@/services/gpio';
+import systemFactory from '@/services/gpio';
 
 const { assert } = require('chai');
 
@@ -7,7 +7,7 @@ let gpio;
 describe('gpio tests', () => {
 
   beforeEach(() => {
-    gpio = gpioService;
+    gpio = systemFactory;
   });
 
   it('creats a cache', () => {

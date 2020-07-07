@@ -8,7 +8,7 @@ let mockApp;
 describe('temperature-ballast service works', () => {
   beforeEach(() => {
     mockApp = {
-      gpioService: {
+      systemFactory: {
         findOrCreateTempSensor() {
           return {
             addSubscriber() {
